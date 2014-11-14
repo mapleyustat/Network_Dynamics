@@ -9,6 +9,15 @@
 #ifndef __Network_Dynamics__Agent__
 #define __Network_Dynamics__Agent__
 
-#include <stdio.h>
+#include <iostream>
+#include <vector>
+
+namespace Agents {
+    
+class Agent {
+    
+};
+    
+}
 
 #endif /* defined(__Network_Dynamics__Agent__) */
