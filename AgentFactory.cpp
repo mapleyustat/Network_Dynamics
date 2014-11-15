@@ -7,10 +7,11 @@
 //
 
 #include "AgentFactory.h"
-#include "Agent.h"
+
 
 using namespace std;
 
-class AgentFactory {
-    
-};
+unique_ptr<Agent> AgentFactory::createAgent() {
+    unique_ptr<Agent> pointer(new Agent);
+    return pointer;
+}

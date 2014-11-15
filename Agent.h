@@ -11,13 +11,20 @@
 
 #include <iostream>
 #include <vector>
+#include "Trait.h"
 
-namespace Agents {
-    
 class Agent {
+private:
+    int agentId;
+    std::vector<Trait> traits;
     
+public:
+    friend std::ostream& operator<< (std::ostream& os, const Agent& agent);
+    friend double compareAgents(Agent& agentA, Agent& agentB);
 };
-    
-}
+
+
+std::ostream& operator<< (std::ostream& os, const Agent& agent);
+double compareAgents(Agent& agentA, Agent& agentB);
 
 #endif /* defined(__Network_Dynamics__Agent__) */

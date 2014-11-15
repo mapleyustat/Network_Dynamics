@@ -7,3 +7,14 @@
 //
 
 #include "Agent.h"
+
+using namespace std;
+
+double compareAgents(Agent& agentA, Agent& agentB) {
+    cout << "Comparing agents";
+    return 0.0;
+}
+
+ostream& operator<< (ostream& os, const Agent& agent) {
+    return os << "Writing out Agent data.\n";
+}

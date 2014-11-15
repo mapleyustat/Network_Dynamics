@@ -9,6 +9,18 @@
 #ifndef __Network_Dynamics__AgentFactory__
 #define __Network_Dynamics__AgentFactory__
 
-#include <stdio.h>
+#include <iostream>
+#include "Agent.h"
+
+class AgentFactory {
+    
+    AgentFactory()=delete;
+    AgentFactory(const AgentFactory&)=delete;
+    AgentFactory(AgentFactory&&)=delete;
+    
+public:
+    static std::unique_ptr<Agent> createAgent();
+
+};
 
 #endif /* defined(__Network_Dynamics__AgentFactory__) */
