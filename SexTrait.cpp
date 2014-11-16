@@ -21,5 +21,6 @@ double SexTrait::compareWithTrait(const Trait& trait) {
 
 double SexTrait::operator&&(const Trait& traitA) {
     this->compareWithTrait(traitA);
+    cout << "operator&&: Comparing SexTrait";
     return 0;
 }
