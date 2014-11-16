@@ -8,18 +8,32 @@
 
 #include <iostream>
 #include "AgentHandler.h"
+#include "SocialNetworkGraph.h"
+#include <boost/graph/graphviz.hpp>
+
 #include "Agent.h"
 #include "Trait.h"
 
 
 using namespace std;
+using namespace boost;
+
 
 int main() {
+    srand (time(NULL));
+    
 
     Agent& a();
     Agent& b();
-    shared_ptr<Trait> traitA = make_shared<Sex>();
-    shared_ptr<Trait> traitB = make_shared<Sex>();
+    
+    SocialNetworkGraph g;
+
+    g.generateRandomSocialGraph(50000,10);
+    
+    //g.generateGraphiz("bla");
+    
+    cout<<"dupa";
+    
 
     return 0;
 }
