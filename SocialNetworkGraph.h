@@ -10,7 +10,7 @@
 #define Social_Network_SocialNetworkGraph_h
 #include <boost/graph/adjacency_list.hpp>
 #include "Agent.h"
-#include "AgentFactory.h"
+#include "AgentHandler.h"
 #include <map>
 typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS> Graph;
 
@@ -34,8 +34,8 @@ public:
     void removeAgent(Agent&);
     void removeAgent(int);
     
-    void generateRandomSocialGraph(AgentFactory&,int);
-    void generateSmallWorldSocialGraph(AgentFactory&,int);
+    void generateRandomSocialGraph(AgentHandler&,int);
+    void generateSmallWorldSocialGraph(AgentHandler&,int);
     
     
 };
