@@ -7,3 +7,19 @@
 //
 
 #include "SexTrait.h"
+
+using namespace std;
+
+int SexTrait::getValue() {
+    return 1;
+}
+
+double SexTrait::compareWithTrait(const Trait& trait) {
+    cout << "Comparing SexTraits" << endl;
+    return 0.0;
+}
+
+double SexTrait::operator&&(const Trait& traitA) {
+    this->compareWithTrait(traitA);
+    return 0;
+}

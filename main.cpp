@@ -10,16 +10,28 @@
 #include "AgentHandler.h"
 #include "Agent.h"
 #include "Trait.h"
+#include "SexTrait.h"
 
 
 using namespace std;
 
 int main() {
 
-    Agent& a();
-    Agent& b();
-    shared_ptr<Trait> traitA = make_shared<Sex>();
-    shared_ptr<Trait> traitB = make_shared<Sex>();
+    AgentHandler& agentHandler = AgentHandler::getInstance();
+    auto agentA = agentHandler.createAgent();
+    auto agentB = agentHandler.createAgent();
+    agentHandler.compareAgents(agentA, agentB);
+    
+    SexTrait st1;
+    SexTrait st2;
+    
+    Trait* tA = &st1;
+    Trait* tB = &st2;
+    
+    tA->compareWithTrait(*tB);
+    st1.compareWithTrait(st2);
+    
+    
 
     return 0;
 }

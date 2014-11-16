@@ -29,7 +29,7 @@ long AgentHandler::generateAgentId() {
 
 long AgentHandler::createAgent() {
     long agentId = this->generateAgentId();
-    this->agentStorage.insert(std::make_pair(agentId, unique_ptr<Agent>(new Agent(agentId))));
+    this->agentStorage[agentId] = unique_ptr<Agent>(new Agent(agentId));
     return agentId;
 }
 
@@ -39,6 +39,10 @@ bool AgentHandler::removeAgent(long agentId) {
 }
 
 double AgentHandler::compareAgents(long firstAgentId, long secondAgentId) {
+    Agent& firstAgent = *(this->agentStorage[firstAgentId]);
+    Agent& secondAgentIter = *(this->agentStorage[secondAgentId]);
+    firstAgent && secondAgentIter;
+    
     return 0.0;
 }
 

@@ -10,5 +10,15 @@
 #define __Network_Dynamics__MeritalStatusTrait__
 
 #include <stdio.h>
+#include "Trait.h"
+
+class MeritalStatusTrait: public Trait {
+public:
+    enum class MeritalStatus {
+        Single, Married, Divorced, Widowed
+    };
+    
+    int getValue();
+};
 
 #endif /* defined(__Network_Dynamics__MeritalStatusTrait__) */

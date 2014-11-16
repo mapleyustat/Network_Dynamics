@@ -37,11 +37,8 @@ public:
      Operator prints agent to stream.
      */
     friend std::ostream& operator<< (std::ostream& os, const Agent& agent);
-    friend double compareAgents(Agent& agentA, Agent& agentB);
+    friend double compare(Agent& agentA, Agent& agentB);
+    friend double operator&&(Agent& agentA, Agent& agentB);
 };
-
-
-std::ostream& operator<< (std::ostream& os, const Agent& agent);
-double compareAgents(Agent& agentA, Agent& agentB);
 
 #endif /* defined(__Network_Dynamics__Agent__) */

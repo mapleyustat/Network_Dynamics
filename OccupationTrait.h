@@ -10,5 +10,14 @@
 #define __Network_Dynamics__OccupationTrait__
 
 #include <stdio.h>
+#include "Trait.h"
 
+class OccupationTrait: Trait {
+public:
+    enum class Occupation {
+      Student, Employed, Unemployed
+    };
+
+    int getValue();
+};
 #endif /* defined(__Network_Dynamics__OccupationTrait__) */

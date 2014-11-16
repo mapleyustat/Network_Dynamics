@@ -12,11 +12,16 @@ using namespace std;
 
 Agent::Agent(long agentId) {
     this->agentId = agentId;
-    this->traits = vector<Trait>();
+    //this->traits = vector<Trait>();
 }
 
-double compareAgents(Agent& agentA, Agent& agentB) {
-    cout << "Comparing agents";
+double compare(Agent& agentA, Agent& agentB) {
+    cout << "compare: Comparing agents" << endl;
+    return 0.0;
+}
+
+double operator&& (Agent& agentA, Agent& agentB) {
+    cout << "operator&&: Comparing agents" << endl;
     return 0.0;
 }
 

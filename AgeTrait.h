@@ -10,5 +10,16 @@
 #define __Network_Dynamics__AgeTrait__
 
 #include <stdio.h>
+#include "Trait.h"
+
+class AgeTrait: Trait {
+private:
+    enum class Age {
+        Child, Adolescent, YoungAdult, Adult, MiddleAged, 
+    };
+    
+public:
+    int getValue();
+};
 
 #endif /* defined(__Network_Dynamics__AgeTrait__) */

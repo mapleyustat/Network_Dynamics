@@ -10,5 +10,17 @@
 #define __Network_Dynamics__SexTrait__
 
 #include <stdio.h>
+#include "Trait.h"
+
+class SexTrait: public Trait {
+    enum class Sex {
+        Male, Female
+    };
+    
+public:
+    int getValue();
+    double compareWithTrait(const Trait& trait);
+    double operator&&(const Trait& traitA);
+};
 
 #endif /* defined(__Network_Dynamics__SexTrait__) */
