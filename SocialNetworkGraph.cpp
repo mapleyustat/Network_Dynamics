@@ -10,23 +10,58 @@
 #include "SocialNetworkGraph.h"
 
 
-void SocialNetworkGraph::addAgent(int id){
+
+void SocialNetworkGraph::addAgent(long id){
     Graph::vertex_descriptor v = boost::add_vertex(mGraph);
-    idToVdMap.insert(std::pair<int,Graph::vertex_descriptor>(id,v));
+    mGraph[v].vertex_id=id;
+    idToVdMap.insert(std::pair<long,Graph::vertex_descriptor>(id,v));
 }
 
-void SocialNetworkGraph::addEdge(int idAgent1,int idAgent2){
+void SocialNetworkGraph::addEdge(long idAgent1,long idAgent2){
     Graph::vertex_descriptor v1=idToVdMap[idAgent1];
     Graph::vertex_descriptor v2=idToVdMap[idAgent2];
 
     boost::add_edge(v1,v2,mGraph);
 }
 
-void SocialNetworkGraph::removeEdge(int id1, int id2){
+void SocialNetworkGraph::removeEdge(long id1, long id2){
     Graph::vertex_descriptor v1=idToVdMap[id1];
     Graph::vertex_descriptor v2=idToVdMap[id2];
     
     std::pair<Graph::edge_descriptor, bool> edgePair = boost::edge(v1, v2, mGraph);
     
     mGraph.remove_edge(edgePair.first);
+}
+
+SocialNetworkGraph::SocialNetworkGraph(){
+    
+}
+
+void SocialNetworkGraph::generateGraphiz(std::string filename){
+    std::ofstream dotfile (filename);
+    boost::dynamic_properties dp;
+    dp.property("node_id", boost::get(&vertex_info::vertex_id, mGraph));
+    write_graphviz_dp(std::cout,mGraph,dp);
+}
+
+void SocialNetworkGraph::generateRandomSocialGraph(long maxNodes,long maxConnections){
+    AgentHandler& handler=AgentHandler::getInstance();
+    long nextId;
+    for(long i=0;i<maxNodes;i++){
+        nextId=handler.createAgent();
+        addAgent(nextId);
+    }
+    long thisConnections;
+    long connectedId;
+    for (std::map<long,Graph::vertex_descriptor>::iterator it=idToVdMap.begin(); it!=idToVdMap.end(); ++it){
+        nextId=it->first;
+        thisConnections=rand()%(maxConnections+1);
+        for(long i=0;i<thisConnections;i++){
+            connectedId=(rand()%maxNodes)+1;
+            if(nextId!=connectedId){
+                addEdge(nextId, connectedId);
+            }
+        }
+        
+    }
 }
