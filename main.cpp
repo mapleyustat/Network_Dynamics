@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include "AgentFactory.h"
+#include "AgentHandler.h"
 #include "Agent.h"
 #include "Trait.h"
 
@@ -16,12 +16,10 @@ using namespace std;
 
 int main() {
 
-    auto agent = AgentFactory::createAgent();
     Agent& a();
     Agent& b();
     shared_ptr<Trait> traitA = make_shared<Sex>();
     shared_ptr<Trait> traitB = make_shared<Sex>();
-    
-    cout << *agent;
+
     return 0;
 }
