@@ -29,8 +29,7 @@ long AgentHandler::generateAgentId() {
 
 long AgentHandler::createAgent() {
     long agentId = this->generateAgentId();
-    //std::pair<long, unique_ptr<Agent>> newAgent(agentId, unique_ptr<Agent>(new Agent()));
-    this->agentStorage.insert(std::make_pair(agentId, unique_ptr<Agent>(new Agent)));
+    this->agentStorage.insert(std::make_pair(agentId, unique_ptr<Agent>(new Agent(agentId))));
     return agentId;
 }
 

@@ -9,16 +9,19 @@
 #ifndef __Network_Dynamics__Agent__
 #define __Network_Dynamics__Agent__
 
+#define TRAIT_COUNT 5
+
 #include <iostream>
 #include <vector>
 #include "Trait.h"
 
 class Agent {
 private:
-    int agentId;
+    long agentId;
     std::vector<Trait> traits;
     
 public:
+    Agent(long agentId);
     friend std::ostream& operator<< (std::ostream& os, const Agent& agent);
     friend double compareAgents(Agent& agentA, Agent& agentB);
 };

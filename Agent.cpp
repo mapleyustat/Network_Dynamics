@@ -10,6 +10,11 @@
 
 using namespace std;
 
+Agent::Agent(long agentId) {
+    this->agentId = agentId;
+    this->traits = vector<Trait>();
+}
+
 double compareAgents(Agent& agentA, Agent& agentB) {
     cout << "Comparing agents";
     return 0.0;
