@@ -24,14 +24,12 @@ private:
     
 public:
     SocialNetworkGraph();
-    void addEdge(const Agent& , const Agent&);
     void addEdge(int, int);
     
-    void removeEdge(const Agent&,const Agent&);
     void removeEdge(int, int);
     
-    void addAgent(Agent&);
-    void removeAgent(Agent&);
+    void addAgent(int);
+    
     void removeAgent(int);
     
     void generateRandomSocialGraph(AgentHandler&,int);

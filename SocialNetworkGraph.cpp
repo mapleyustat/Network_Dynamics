@@ -10,9 +10,9 @@
 #include "SocialNetworkGraph.h"
 
 
-void SocialNetworkGraph::addAgent(Agent& agent){
+void SocialNetworkGraph::addAgent(int id){
     Graph::vertex_descriptor v = boost::add_vertex(mGraph);
-    idToVdMap.insert(std::pair<int,Graph::vertex_descriptor>(agent.getId(),v));
+    idToVdMap.insert(std::pair<int,Graph::vertex_descriptor>(id,v));
 }
 
 void SocialNetworkGraph::addEdge(int idAgent1,int idAgent2){
@@ -22,11 +22,6 @@ void SocialNetworkGraph::addEdge(int idAgent1,int idAgent2){
     boost::add_edge(v1,v2,mGraph);
 }
 
-void SocialNetworkGraph::addEdge(const Agent & agent1,const Agent&  agent2){
-    addEdge(agent1.getId(), agent2.getId());
-}
-
-
 void SocialNetworkGraph::removeEdge(int id1, int id2){
     Graph::vertex_descriptor v1=idToVdMap[id1];
     Graph::vertex_descriptor v2=idToVdMap[id2];
@@ -35,8 +30,3 @@ void SocialNetworkGraph::removeEdge(int id1, int id2){
     
     mGraph.remove_edge(edgePair.first);
 }
-
-void SocialNetworkGraph::removeEdge(const Agent& agent1, const Agent& agent2){
-    removeEdge(agent1.getId(), agent2.getId());
-}
-
