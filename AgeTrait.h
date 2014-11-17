@@ -12,16 +12,18 @@
 #include <stdio.h>
 #include "Trait.h"
 
-class AgeTrait: Trait {
+class AgeTrait: public Trait {
+private:
+    constexpr static const double distribution[] = { 0.217, 0.316, 0.262, 0.167, 0.038 };
 public:
-    enum class Age {
-        Child, Adolescent, YoungAdult, Adult, MiddleAged, 
+    enum Age {
+        Adolescent, YoungAdult, Adult, Old, VeryOld, COUNT
     };
 
-    int getValue();
-    double compareWithTrait(const Trait& trait);
-    double operator&&(const Trait& traitA);
-    
+    AgeTrait();
+    int getValue() const;
+    std::string toString();
+    //double compareWithTrait(const Trait& trait) const;
 private:
     Age value;
 };

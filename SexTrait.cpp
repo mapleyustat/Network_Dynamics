@@ -10,17 +10,15 @@
 
 using namespace std;
 
-int SexTrait::getValue() {
-    return 1;
+SexTrait::SexTrait() {
+    int randomIndex = rand() % Sex::COUNT;
+    this->value = Sex(randomIndex);
 }
 
-double SexTrait::compareWithTrait(const Trait& trait) {
-    cout << "Comparing SexTraits" << endl;
-    return 0.0;
+int SexTrait::getValue() const {
+    return static_cast<std::underlying_type<Sex>::type>(this->value);
 }
 
-double SexTrait::operator&&(const Trait& traitA) {
-    this->compareWithTrait(traitA);
-    cout << "operator&&: Comparing SexTrait";
-    return 0;
+string SexTrait::toString() {
+    return "toString: SexTrait";
 }

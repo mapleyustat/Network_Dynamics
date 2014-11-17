@@ -8,14 +8,17 @@
 
 #include "OccupationTrait.h"
 
-int OccupationTrait::getValue() {
-    return 1;
+using namespace std;
+
+OccupationTrait::OccupationTrait() {
+    int randomIndex = rand() % Occupation::COUNT;
+    this->value = Occupation(randomIndex);
 }
 
-double OccupationTrait::compareWithTrait(const Trait& trait) {
-    return 0.0;
+int OccupationTrait::getValue() const {
+    return static_cast<std::underlying_type<Occupation>::type>(this->value);
 }
 
-double OccupationTrait::operator&&(const Trait& traitA) {
-    return 0.0;
+string OccupationTrait::toString() {
+    return "toString: OccupationTrait";
 }

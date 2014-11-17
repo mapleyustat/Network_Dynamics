@@ -7,14 +7,22 @@
 //
 
 #include "AgeTrait.h"
-int AgeTrait::getValue() {
-    return 1;
+
+using namespace std;
+
+AgeTrait::AgeTrait() {
+    int randomIndex = rand() % Age::COUNT;
+    this->value = Age(randomIndex);
 }
 
-double AgeTrait::compareWithTrait(const Trait& trait) {
-    return 0.0;
+int AgeTrait::getValue() const {
+    return static_cast<std::underlying_type<Age>::type>(this->value);
 }
 
-double AgeTrait::operator&&(const Trait& traitA) {
-    return 0.0;
+string AgeTrait::toString() {
+    return "toString: SexTrait";
 }
+
+//double AgeTrait::compareWithTrait(const Trait& trait) const {
+//    return 0.0;
+//}

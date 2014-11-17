@@ -14,13 +14,13 @@
 
 class MeritalStatusTrait: public Trait {
 public:
-    enum class MeritalStatus {
-        Single, Married, Divorced, Widowed
+    enum MeritalStatus {
+        Single, Married, Divorced, Widowed, COUNT
     };
     
-    int getValue();
-    double compareWithTrait(const Trait& trait);
-    double operator&&(const Trait& traitA);
+    MeritalStatusTrait();
+    int getValue() const;
+    std::string toString();
 
 private:
     MeritalStatus value;

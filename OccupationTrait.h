@@ -12,15 +12,15 @@
 #include <stdio.h>
 #include "Trait.h"
 
-class OccupationTrait: Trait {
+class OccupationTrait: public Trait {
 public:
-    enum class Occupation {
-      Student, Employed, Unemployed
+    enum Occupation {
+      Student, Employed, Unemployed, COUNT
     };
 
-    int getValue();
-    double compareWithTrait(const Trait& trait);
-    double operator&&(const Trait& traitA);
+    OccupationTrait();
+    int getValue() const;
+    std::string toString();
     
 private:
     Occupation value;

@@ -10,18 +10,21 @@
 #define __Network_Dynamics__SexTrait__
 
 #include <stdio.h>
+#include <vector>
 #include "Trait.h"
 
 class SexTrait: public Trait {
+private:
+    constexpr static const double statistics[] = { 0.515, 0.485 };
 public:
-    enum class Sex {
-        Male, Female
+    enum Sex {
+        Male, Female, COUNT
     };
     
-    int getValue();
-    double compareWithTrait(const Trait& trait);
-    double operator&&(const Trait& traitA);
-
+    SexTrait();
+    int getValue() const;
+    std::string toString();
+    
 private:
     Sex value;
 };

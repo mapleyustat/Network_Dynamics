@@ -8,14 +8,17 @@
 
 #include "MeritalStatusTrait.h"
 
-int MeritalStatusTrait::getValue() {
-    return 1;
+using namespace std;
+
+MeritalStatusTrait::MeritalStatusTrait() {
+    int randomIndex = rand() % MeritalStatus::COUNT;
+    this->value = MeritalStatus(randomIndex);
 }
 
-double MeritalStatusTrait::compareWithTrait(const Trait& trait) {
-    return 0.0;
+int MeritalStatusTrait::getValue() const {
+    return this->value;
 }
 
-double MeritalStatusTrait::operator&&(const Trait& traitA) {
-    return 0.0;
+string MeritalStatusTrait::toString() {
+    return "toString: MeritalStatusTrait";
 }

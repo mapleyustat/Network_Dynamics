@@ -13,9 +13,12 @@
 
 class Trait {
 public:
-    virtual int getValue() = 0;
-    virtual double compareWithTrait(const Trait& traitA) = 0;
-    virtual double operator&&(const Trait& traitA) = 0;
+    virtual int getValue() const = 0;
+    virtual std::string toString() = 0;
+    virtual double operator&&(const Trait& traitA);
+    virtual double compareWithTrait(const Trait& traitA) const;
+    friend std::ostream& operator<< (std::ostream& os, const Trait& trait);
+
 };
 
 #endif /* defined(__Network_Dynamics__Trait__) */
