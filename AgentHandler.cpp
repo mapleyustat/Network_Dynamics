@@ -28,8 +28,21 @@ long AgentHandler::generateAgentId() {
 }
 
 long AgentHandler::createAgent() {
+    
+    //TODO - Temporary. Replace with final verison.
+    unique_ptr<Trait> sexTrait(new SexTrait);
+    unique_ptr<Trait> ageTrait(new AgeTrait);
+    unique_ptr<Trait> occupationTrait(new OccupationTrait);
+    unique_ptr<Trait> meritalStatusTrait( new MeritalStatusTrait);
+    
     long agentId = this->generateAgentId();
-    this->agentStorage[agentId] = unique_ptr<Agent>(new Agent(agentId));
+    unique_ptr<Agent> newAgent (new Agent(agentId));
+    newAgent->traits.push_back(std::move(sexTrait));
+    newAgent->traits.push_back(std::move(ageTrait));
+    newAgent->traits.push_back(std::move(occupationTrait));
+    newAgent->traits.push_back(std::move(meritalStatusTrait));
+    
+    this->agentStorage[agentId] = std::move(newAgent);
     return agentId;
 }
 
@@ -39,16 +52,16 @@ bool AgentHandler::removeAgent(long agentId) {
     return agentsRemoved == 0 ? true : false;
 }
 
-std::vector<long> findClosestAgents(long agentId, int closestCount) {
+std::vector<long> AgentHandler::findClosestAgents(long agentId, int closestCount) {
     cout << "Finding " << closestCount << " nearest neighbors of " << agentId << endl;
     return vector<long>();
 }
 
 double AgentHandler::compareAgents(long firstAgentId, long secondAgentId) {
-    Agent& firstAgent = *(this->agentStorage[firstAgentId]);
-    Agent& secondAgentIter = *(this->agentStorage[secondAgentId]);
-    firstAgent && secondAgentIter;
-    
-    return 0.0;
+    return *(this->agentStorage[firstAgentId]) && *(this->agentStorage[secondAgentId]);
+}
+
+void AgentHandler::printAgent(long agentId) {
+    cout << *(this->agentStorage[agentId]);
 }
 

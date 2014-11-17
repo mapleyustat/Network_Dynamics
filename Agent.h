@@ -30,7 +30,7 @@ private:
     /**
      Traits of an agent
      */
-    std::vector<Trait> traits;
+    std::vector<std::unique_ptr<Trait>> traits;
     
     /** 
      Values of an agent
@@ -46,10 +46,27 @@ public:
     
     /**
      Operator prints agent to stream.
+     @param os output ostream
+     @param agent agent to be printed
+     @return output stream
      */
     friend std::ostream& operator<< (std::ostream& os, const Agent& agent);
-    double compareWithAgent(Agent& agentA, Agent& agentB);
+    
+    /**
+     Function compares agent with an other agent. Trait based comparison.
+     @param agentA other agent to be compared.
+     @return real-valued similarity rate between agents.
+     */
+    double compareWithAgent(Agent& agentA);
+    
+    /**
+     Overloaded operator for comparing agents. Uses compareWithAgent function.
+     @param agentA other agent to be compared.
+     @return real-valued similarity rate between agents.
+     */
     double operator&&(Agent& agentA);
+    
+    friend class AgentHandler;
 };
 
 #endif /* defined(__Network_Dynamics__Agent__) */

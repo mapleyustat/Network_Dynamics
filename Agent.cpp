@@ -12,19 +12,29 @@ using namespace std;
 
 Agent::Agent(long agentId) {
     this->agentId = agentId;
-    this->traits = vector<Trait>();
+    this->traits = vector<unique_ptr<Trait>>();
 }
 
-double Agent::compareWithAgent(Agent& agentA, Agent& agentB) {
+double Agent::compareWithAgent(Agent& otherAgent) {
     cout << "compare: Comparing agents" << endl;
-    return 0.0;
+    double similarityRate = 0.0;
+    
+    for (int i = 0; i < this->traits.size(); i++) {
+        similarityRate += (*this->traits[0]) && (*otherAgent.traits[0]);
+    }
+    double returnValue =similarityRate / this->traits.size();
+    return returnValue;
 }
 
 double Agent::operator&& (Agent& agentA) {
     cout << "operator&&: Comparing agents" << endl;
-    return 0.0;
+    return this->compareWithAgent(agentA);
 }
 
 ostream& operator<< (ostream& os, const Agent& agent) {
-    return os << "Writing out Agent data.\n";
+    os << "AgentID: " << agent.agentId << endl;
+    for (auto const& trait : agent.traits) {
+        os << *trait << endl;
+    }
+    return os << endl;
 }

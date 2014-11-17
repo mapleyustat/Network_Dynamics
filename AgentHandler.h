@@ -12,8 +12,10 @@
 #include <iostream>
 #include <unordered_map>
 #include "Agent.h"
-
-
+#include "SexTrait.h"
+#include "AgeTrait.h"
+#include "MeritalStatusTrait.h"
+#include "OccupationTrait.h"
 
 class AgentHandler {
 private:
@@ -78,6 +80,12 @@ public:
      @return Value indicating agent similarity
      */
     double compareAgents(long firstAgentId, long secondAgentId);
+    
+    /**
+     Function prints agent details to std output.
+     @param agentId ID of printed agent
+     */
+    void printAgent(long agentId);
 
 };
 
