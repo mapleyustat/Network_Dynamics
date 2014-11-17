@@ -7,3 +7,15 @@
 //
 
 #include "MeritalStatusTrait.h"
+
+int MeritalStatusTrait::getValue() {
+    return 1;
+}
+
+double MeritalStatusTrait::compareWithTrait(const Trait& trait) {
+    return 0.0;
+}
+
+double MeritalStatusTrait::operator&&(const Trait& traitA) {
+    return 0.0;
+}

@@ -19,6 +19,12 @@ public:
     };
     
     int getValue();
+    double compareWithTrait(const Trait& trait);
+    double operator&&(const Trait& traitA);
+
+private:
+    MeritalStatus value;
+    
 };
 
 #endif /* defined(__Network_Dynamics__MeritalStatusTrait__) */

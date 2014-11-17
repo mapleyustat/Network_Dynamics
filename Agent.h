@@ -23,10 +23,21 @@ private:
     long agentId;
     
     /**
+     Character of an agent. How easy is it to make new connections.
+     */
+    double character;
+    
+    /**
      Traits of an agent
      */
     std::vector<Trait> traits;
     
+    /** 
+     Values of an agent
+     */
+    std::vector<double> desirability;
+    
+
 public:
     /**
      Agent class default constructor
@@ -37,8 +48,8 @@ public:
      Operator prints agent to stream.
      */
     friend std::ostream& operator<< (std::ostream& os, const Agent& agent);
-    friend double compare(Agent& agentA, Agent& agentB);
-    friend double operator&&(Agent& agentA, Agent& agentB);
+    double compareWithAgent(Agent& agentA, Agent& agentB);
+    double operator&&(Agent& agentA);
 };
 
 #endif /* defined(__Network_Dynamics__Agent__) */

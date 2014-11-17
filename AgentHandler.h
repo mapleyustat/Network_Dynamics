@@ -64,6 +64,14 @@ public:
     bool removeAgent(long agentId);
     
     /**
+     Function returns a vector o n closest agents to a given agent.
+     @param agentId base agent for neighbor search
+     @param closesCount number of closest agents
+     @return Vector containing ID's of agents that are closest to a given agent.
+     */
+    std::vector<long> findClosestAgents(long agentId, int closestCount);
+        
+    /**
      Function compares two agents.
      @param firstAgentId ID of first agent to be compared
      @param secondAgentId ID of second agent to be compared

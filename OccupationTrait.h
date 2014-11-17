@@ -19,5 +19,10 @@ public:
     };
 
     int getValue();
+    double compareWithTrait(const Trait& trait);
+    double operator&&(const Trait& traitA);
+    
+private:
+    Occupation value;
 };
 #endif /* defined(__Network_Dynamics__OccupationTrait__) */

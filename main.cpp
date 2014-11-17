@@ -46,7 +46,7 @@ int main() {
     
     //g.generateGraphiz("bla");
     
-    cout<<"dupa";
+    cout<<"End";
 
     return 0;
 }
