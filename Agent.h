@@ -37,13 +37,13 @@ private:
      */
     std::vector<double> desirability;
     
-
-public:
     /**
      Agent class default constructor
      */
     Agent(long agentId);
     
+
+public:
     /**
      Operator prints agent to stream.
      @param os output ostream
@@ -66,6 +66,9 @@ public:
      */
     double operator&&(Agent& agentA);
     
+    /**
+     AgentHandler is responsible for Agent creation and management.
+     */
     friend class AgentHandler;
 };
 

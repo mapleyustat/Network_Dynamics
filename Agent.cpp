@@ -7,7 +7,7 @@
 //
 
 #include "Agent.h"
-
+#include <assert.h>
 using namespace std;
 
 Agent::Agent(long agentId) {
@@ -15,19 +15,19 @@ Agent::Agent(long agentId) {
     this->traits = vector<unique_ptr<Trait>>();
 }
 
+
 double Agent::compareWithAgent(Agent& otherAgent) {
-    //cout << "compare: Comparing agents" << endl;
     double similarityRate = 0.0;
     
+    //TODO More advanced method of computing similarity between agents.
     for (int i = 0; i < this->traits.size(); i++) {
         similarityRate += (*this->traits[i]) && (*otherAgent.traits[i]);
     }
-    double returnValue = similarityRate / this->traits.size();
-    return returnValue;
+    
+    return similarityRate / this->traits.size();
 }
 
 double Agent::operator&& (Agent& agentA) {
-    //cout << "operator&&: Comparing agents" << endl;
     return this->compareWithAgent(agentA);
 }
 
