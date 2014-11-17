@@ -54,17 +54,17 @@ public:
     
     /**
      Function compares agent with an other agent. Trait based comparison.
-     @param agentA other agent to be compared.
+     @param otherAgent other agent to be compared.
      @return real-valued similarity rate between agents.
      */
-    double compareWithAgent(Agent& agentA);
+    double compareWithAgent(const Agent& otherAgent) const;
     
     /**
      Overloaded operator for comparing agents. Uses compareWithAgent function.
-     @param agentA other agent to be compared.
+     @param otherAgent other agent to be compared.
      @return real-valued similarity rate between agents.
      */
-    double operator&&(Agent& agentA);
+    double operator&&(const Agent& otherAgent) const;
     
     /**
      AgentHandler is responsible for Agent creation and management.

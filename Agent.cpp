@@ -16,19 +16,18 @@ Agent::Agent(long agentId) {
 }
 
 
-double Agent::compareWithAgent(Agent& otherAgent) {
+double Agent::compareWithAgent(const Agent& otherAgent) const {
     double similarityRate = 0.0;
     
     //TODO More advanced method of computing similarity between agents.
     for (int i = 0; i < this->traits.size(); i++) {
         similarityRate += (*this->traits[i]) && (*otherAgent.traits[i]);
     }
-    
     return similarityRate / this->traits.size();
 }
 
-double Agent::operator&& (Agent& agentA) {
-    return this->compareWithAgent(agentA);
+double Agent::operator&& (const Agent& otherAgent) const {
+    return this->compareWithAgent(otherAgent);
 }
 
 ostream& operator<< (ostream& os, const Agent& agent) {
