@@ -16,18 +16,18 @@ Agent::Agent(long agentId) {
 }
 
 double Agent::compareWithAgent(Agent& otherAgent) {
-    cout << "compare: Comparing agents" << endl;
+    //cout << "compare: Comparing agents" << endl;
     double similarityRate = 0.0;
     
     for (int i = 0; i < this->traits.size(); i++) {
-        similarityRate += (*this->traits[0]) && (*otherAgent.traits[0]);
+        similarityRate += (*this->traits[i]) && (*otherAgent.traits[i]);
     }
-    double returnValue =similarityRate / this->traits.size();
+    double returnValue = similarityRate / this->traits.size();
     return returnValue;
 }
 
 double Agent::operator&& (Agent& agentA) {
-    cout << "operator&&: Comparing agents" << endl;
+    //cout << "operator&&: Comparing agents" << endl;
     return this->compareWithAgent(agentA);
 }
 
