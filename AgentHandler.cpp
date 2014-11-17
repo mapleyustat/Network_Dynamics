@@ -7,6 +7,7 @@
 //
 
 #include "AgentHandler.h"
+#include <array>
 
 
 using namespace std;
@@ -49,21 +50,34 @@ bool AgentHandler::removeAgent(long agentId) {
 }
 
 std::vector<long> AgentHandler::findClosestAgents(long agentId, int closestCount) {
-    //TODO - Replace with final version.
-    vector<long> sampleVector = vector<long>();
-    for (auto const& agentPair : this->agentStorage) {
-        if ((*agentPair.second).agentId == agentId) {
+    auto const& agent = *this->agentStorage[agentId];
+    vector<double> highScores(closestCount, 0.0);
+    vector<long> closestAgents(closestCount, 0L);
+    auto replaceFunction = [&] (double similarity, long agentId) {
+        auto minIter = min_element(highScores.begin(), highScores.end());
+        if(similarity > *minIter) {
+            *minIter = similarity;
+            long minIndex = minIter - highScores.begin();
+            closestAgents[minIndex] = agentId;
+        }
+    };
+    
+    for (auto const& currentAgentPair : this->agentStorage) {
+        const Agent& currentAgent = *currentAgentPair.second;
+        if (currentAgent.agentId == agentId) {
             continue;
         } else {
-            sampleVector.push_back((*agentPair.second).agentId);
+            double similarity = agent.compareWithAgent(currentAgent);
+            replaceFunction(similarity, currentAgent.agentId);
         }
     }
-    
-    return vector<long>(sampleVector.begin(), sampleVector.begin() + closestCount);
+    return closestAgents;
 }
 
 double AgentHandler::compareAgents(long firstAgentId, long secondAgentId) {
-    return *(this->agentStorage[firstAgentId]) && *(this->agentStorage[secondAgentId]);
+    double firstAgentPerspectiveScore = *(this->agentStorage[firstAgentId]) && *(this->agentStorage[secondAgentId]);
+    double secondAgentPerspectiveScore = *(this->agentStorage[secondAgentId]) && *(this->agentStorage[firstAgentId]);
+    return (firstAgentPerspectiveScore + secondAgentPerspectiveScore) / 2.0;
 }
 
 void AgentHandler::printAgent(long agentId) {
