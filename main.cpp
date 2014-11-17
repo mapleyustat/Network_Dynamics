@@ -32,9 +32,13 @@ int main() {
     
     SocialNetworkGraph g;
 
-    g.generateRandomSocialGraph(50000,10);
+    g.generateRandomSocialGraph(5,2);
     
-    //g.generateGraphiz("bla");
+    //ofstream myfile;
+    //myfile.open ("/Users/O10/Documents/myfile.dot");
+    g.generateGraphiz(std::cout);
+    //g.generateGraphiz(myfile);
+    //myfile.close();
     
     cout<<"End";
 
