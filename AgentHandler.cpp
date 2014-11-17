@@ -54,7 +54,17 @@ bool AgentHandler::removeAgent(long agentId) {
 
 std::vector<long> AgentHandler::findClosestAgents(long agentId, int closestCount) {
     cout << "Finding " << closestCount << " nearest neighbors of " << agentId << endl;
-    return vector<long>();
+    
+    vector<long> sampleVector = vector<long>();
+    for (auto const& agentPair : this->agentStorage) {
+        if ((*agentPair.second).agentId == agentId) {
+            continue;
+        } else {
+            sampleVector.push_back((*agentPair.second).agentId);
+        }
+    }
+    
+    return vector<long>(sampleVector.begin(), sampleVector.begin() + closestCount);
 }
 
 double AgentHandler::compareAgents(long firstAgentId, long secondAgentId) {
