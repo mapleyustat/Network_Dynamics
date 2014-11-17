@@ -28,37 +28,28 @@ long AgentHandler::generateAgentId() {
 }
 
 long AgentHandler::createAgent() {
-    
-    //TODO - Temporary. Replace with final verison.
-    unique_ptr<Trait> sexTrait(new SexTrait);
-    unique_ptr<Trait> ageTrait(new AgeTrait);
-    unique_ptr<Trait> occupationTrait(new OccupationTrait);
-    unique_ptr<Trait> meritalStatusTrait( new MeritalStatusTrait);
-    
     long agentId = this->generateAgentId();
     unique_ptr<Agent> newAgent (new Agent(agentId));
-    newAgent->traits.push_back(std::move(sexTrait));
-    newAgent->traits.push_back(std::move(ageTrait));
-    newAgent->traits.push_back(std::move(occupationTrait));
-    newAgent->traits.push_back(std::move(meritalStatusTrait));
+    AgentHandler::setupAgent(*newAgent);
     
-    this->agentStorage[agentId] = std::move(newAgent);
+    this->agentStorage[agentId] = move(newAgent);
     return agentId;
 }
 
-void AgentHandler::setupAgent(long agentId) {
-    
+void AgentHandler::setupAgent(Agent& agent) {
+    agent.traits.push_back(unique_ptr<Trait>(new SexTrait));
+    agent.traits.push_back(unique_ptr<Trait> (new AgeTrait));
+    agent.traits.push_back(unique_ptr<Trait> (new OccupationTrait));
+    agent.traits.push_back(unique_ptr<Trait> (new MeritalStatusTrait));
 }
 
 bool AgentHandler::removeAgent(long agentId) {
-    cout << "AgentHandler: removeAgent " << endl;
     size_t agentsRemoved = this->agentStorage.erase(agentId);
     return agentsRemoved == 0 ? true : false;
 }
 
 std::vector<long> AgentHandler::findClosestAgents(long agentId, int closestCount) {
-    cout << "Finding " << closestCount << " nearest neighbors of " << agentId << endl;
-    
+    //TODO - Replace with final version.
     vector<long> sampleVector = vector<long>();
     for (auto const& agentPair : this->agentStorage) {
         if ((*agentPair.second).agentId == agentId) {
