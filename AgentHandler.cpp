@@ -46,6 +46,10 @@ long AgentHandler::createAgent() {
     return agentId;
 }
 
+void AgentHandler::setupAgent(long agentId) {
+    
+}
+
 bool AgentHandler::removeAgent(long agentId) {
     cout << "AgentHandler: removeAgent " << endl;
     size_t agentsRemoved = this->agentStorage.erase(agentId);

@@ -46,6 +46,12 @@ private:
      */
     long generateAgentId();
     
+    /**
+     Function fills out new agent details. Use only after agents initialization.
+     @params agentId agent to be setup up
+     */
+    void setupAgent(long agentId);
+    
 public:
     /**
      Get AgentHandler instance (Singleton class).
