@@ -47,6 +47,7 @@ void SocialNetworkGraph::generateGraphiz(std::ostream& stream){
 
 void SocialNetworkGraph::removeAgent(long id){
     Graph::vertex_descriptor v=idToVdMap[id];
+    boost::clear_vertex(v,mGraph);
     boost::remove_vertex(v, mGraph);
     idToVdMap.erase(id);
 }
