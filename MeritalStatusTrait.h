@@ -14,15 +14,31 @@
 
 class MeritalStatusTrait: public Trait {
 public:
+    /**
+     
+     */
     enum MeritalStatus {
-        Single, Married, Divorced, Widowed, COUNT
+        Single, Relationship, Married, Divorced, Widowed, COUNT
     };
     
+    /**
+     MeritalStatusTrait class default constructor.
+     */
     MeritalStatusTrait();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
     int getValue() const;
-    std::string toString();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
+    std::string toString() const;
 
 private:
+    /**
+     */
     MeritalStatus value;
     
 };

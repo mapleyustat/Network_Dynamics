@@ -23,6 +23,6 @@ double Trait::compareWithTrait(const Trait& trait) const {
 }
 
 ostream& operator<< (ostream& os, const Trait& trait) {
-    return os << trait.getValue();
+    return os << trait.toString();
 }
 

@@ -11,18 +11,33 @@
 using namespace std;
 
 AgeTrait::AgeTrait() {
+    //TODO Replace with final version based on distribution.
     int randomIndex = rand() % Age::COUNT;
     this->value = Age(randomIndex);
 }
 
 int AgeTrait::getValue() const {
-    return static_cast<std::underlying_type<Age>::type>(this->value);
+    return this->value;
 }
 
-string AgeTrait::toString() {
-    return "toString: SexTrait";
+string AgeTrait::toString() const {
+    string toString;
+    switch (this->value) {
+        case 0: toString = "Adolescent";
+            break;
+        case 1: toString = "Young Adult";
+            break;
+        case 2: toString = "Adult";
+            break;
+        case 3: toString = "Old";
+            break;
+        case 4: toString = "VeryOld";
+            break;
+    }
+    return toString;
 }
 
-//double AgeTrait::compareWithTrait(const Trait& trait) const {
-//    return 0.0;
-//}
+double AgeTrait::compareWithTrait(const Trait& trait) const {
+    cout << this->value << " " << trait.getValue() << " " << 1.0 - (double) abs(this->getValue() - trait.getValue()) / (Age::COUNT -1);
+    return  1.0 - (double) abs(this->getValue() - trait.getValue()) / (Age::COUNT - 1);
+}

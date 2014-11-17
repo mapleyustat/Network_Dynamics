@@ -11,14 +11,22 @@
 using namespace std;
 
 SexTrait::SexTrait() {
+    //TODO Replace with final version based on distribution.
     int randomIndex = rand() % Sex::COUNT;
     this->value = Sex(randomIndex);
 }
 
 int SexTrait::getValue() const {
-    return static_cast<std::underlying_type<Sex>::type>(this->value);
+    return this->value;
 }
 
-string SexTrait::toString() {
-    return "toString: SexTrait";
+string SexTrait::toString() const {
+    string toString;
+    switch (this->value) {
+        case 0: toString = "Male";
+            break;
+        case 1: toString = "Female";
+            break;
+    }
+    return toString;
 }

@@ -15,17 +15,37 @@
 
 class SexTrait: public Trait {
 private:
+    /**
+     Static array holding statistic data about the distribution of gender.
+     */
     constexpr static const double statistics[] = { 0.515, 0.485 };
+    
 public:
+    /**
+     
+     */
     enum Sex {
         Male, Female, COUNT
     };
     
+    /**
+     SexTrait class default constructor.
+     */
     SexTrait();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
     int getValue() const;
-    std::string toString();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
+    std::string toString() const;
     
 private:
+    /**
+     */
     Sex value;
 };
 

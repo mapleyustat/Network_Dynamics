@@ -14,17 +14,39 @@
 
 class AgeTrait: public Trait {
 private:
+    /**
+     Static array holding statistic data about the distribution of age groups.
+     */
     constexpr static const double distribution[] = { 0.217, 0.316, 0.262, 0.167, 0.038 };
+    
 public:
+    /**
+     Enum
+     */
     enum Age {
         Adolescent, YoungAdult, Adult, Old, VeryOld, COUNT
     };
-
+    
+    /**
+     AgeTrait class default constructor.
+     */
     AgeTrait();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
     int getValue() const;
-    std::string toString();
-    //double compareWithTrait(const Trait& trait) const;
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
+    std::string toString() const;
+    
+    double compareWithTrait(const Trait& trait) const;
 private:
+    /**
+     
+     */
     Age value;
 };
 

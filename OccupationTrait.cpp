@@ -11,14 +11,24 @@
 using namespace std;
 
 OccupationTrait::OccupationTrait() {
+    //TODO Replace with final version based on distribution.
     int randomIndex = rand() % Occupation::COUNT;
     this->value = Occupation(randomIndex);
 }
 
 int OccupationTrait::getValue() const {
-    return static_cast<std::underlying_type<Occupation>::type>(this->value);
+    return this->value;
 }
 
-string OccupationTrait::toString() {
-    return "toString: OccupationTrait";
+string OccupationTrait::toString() const {
+    string toString;
+    switch (this->value) {
+        case 0: toString = "Student";
+            break;
+        case 1: toString = "Employed";
+            break;
+        case 2: toString = "Unemployed";
+            break;
+    }
+    return toString;
 }

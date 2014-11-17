@@ -14,7 +14,7 @@
 class Trait {
 public:
     virtual int getValue() const = 0;
-    virtual std::string toString() = 0;
+    virtual std::string toString() const = 0;
     virtual double operator&&(const Trait& traitA);
     virtual double compareWithTrait(const Trait& traitA) const;
     friend std::ostream& operator<< (std::ostream& os, const Trait& trait);

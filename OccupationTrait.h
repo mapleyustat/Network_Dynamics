@@ -14,15 +14,32 @@
 
 class OccupationTrait: public Trait {
 public:
+    /**
+     
+     */
     enum Occupation {
       Student, Employed, Unemployed, COUNT
     };
-
+    
+    /**
+     OccupationTrait class default constructor.
+     */
     OccupationTrait();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
     int getValue() const;
-    std::string toString();
+    
+    /**
+     @see Description of method available in base class header. (Trait.h)
+     */
+    std::string toString() const;
     
 private:
+    /**
+     
+     */
     Occupation value;
 };
 #endif /* defined(__Network_Dynamics__OccupationTrait__) */
