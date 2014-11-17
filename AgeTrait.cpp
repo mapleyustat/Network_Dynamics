@@ -38,6 +38,5 @@ string AgeTrait::toString() const {
 }
 
 double AgeTrait::compareWithTrait(const Trait& trait) const {
-    cout << this->value << " " << trait.getValue() << " " << 1.0 - (double) abs(this->getValue() - trait.getValue()) / (Age::COUNT -1);
-    return  1.0 - (double) abs(this->getValue() - trait.getValue()) / (Age::COUNT - 1);
+    return  1.0 - (double) abs(this->getValue() - trait.getValue()) / Age::COUNT;
 }
