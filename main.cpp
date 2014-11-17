@@ -26,19 +26,9 @@ int main() {
     AgentHandler& agentHandler = AgentHandler::getInstance();
     auto agentA = agentHandler.createAgent();
     auto agentB = agentHandler.createAgent();
-    agentHandler.compareAgents(agentA, agentB);
-    
-    SexTrait st1;
-    SexTrait st2;
-    
-    Trait* tA = &st1;
-    Trait* tB = &st2;
-    
-    tA->compareWithTrait(*tB);
-    st1.compareWithTrait(st2);
-    
-    Agent& a();
-    Agent& b();
+    agentHandler.printAgent(agentA);
+    agentHandler.printAgent(agentB);
+    cout << "Agent similarity: " << agentHandler.compareAgents(agentA, agentB) << endl;
     
     SocialNetworkGraph g;
 
