@@ -57,11 +57,20 @@ void SocialNetworkGraph::generateRandomSocialGraph(long maxNodes,long maxConnect
         nextId=it->first;
         thisConnections=rand()%(maxConnections+1);
         for(long i=0;i<thisConnections;i++){
-            connectedId=(rand()%maxNodes)+1;
+            connectedId=getRandomId();
             if(nextId!=connectedId){
                 addEdge(nextId, connectedId);
             }
         }
         
     }
+}
+
+
+
+long SocialNetworkGraph::getRandomId(){
+    long mapSize=idToVdMap.size();
+    std::map<long,Graph::vertex_descriptor>::iterator it=idToVdMap.begin();
+    std::advance(it,rand()%mapSize);
+    return it->second;
 }

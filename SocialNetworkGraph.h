@@ -28,6 +28,7 @@ class SocialNetworkGraph{
 private:
     Graph mGraph;
     map<long,Graph::vertex_descriptor> idToVdMap;
+    long getRandomId();
     
 public:
     SocialNetworkGraph();
