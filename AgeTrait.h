@@ -13,13 +13,17 @@
 #include "Trait.h"
 
 class AgeTrait: Trait {
-private:
+public:
     enum class Age {
         Child, Adolescent, YoungAdult, Adult, MiddleAged, 
     };
-    
-public:
+
     int getValue();
+    double compareWithTrait(const Trait& trait);
+    double operator&&(const Trait& traitA);
+    
+private:
+    Age value;
 };
 
 #endif /* defined(__Network_Dynamics__AgeTrait__) */

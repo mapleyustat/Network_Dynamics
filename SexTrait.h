@@ -13,14 +13,17 @@
 #include "Trait.h"
 
 class SexTrait: public Trait {
+public:
     enum class Sex {
         Male, Female
     };
     
-public:
     int getValue();
     double compareWithTrait(const Trait& trait);
     double operator&&(const Trait& traitA);
+
+private:
+    Sex value;
 };
 
 #endif /* defined(__Network_Dynamics__SexTrait__) */

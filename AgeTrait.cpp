@@ -7,3 +7,14 @@
 //
 
 #include "AgeTrait.h"
+int AgeTrait::getValue() {
+    return 1;
+}
+
+double AgeTrait::compareWithTrait(const Trait& trait) {
+    return 0.0;
+}
+
+double AgeTrait::operator&&(const Trait& traitA) {
+    return 0.0;
+}
