@@ -89,7 +89,7 @@ void SocialNetworkGraph::generateSmallWorldSocialGraph(long nodes, int connectio
     
     for (std::map<long,Graph::vertex_descriptor>::iterator it=idToVdMap.begin(); it!=idToVdMap.end(); ++it){
         nextId=it->first;
-        //closestIds=handler.findClosestAgents(nextId, connections);
+        closestIds=handler.findClosestAgents(nextId, connections);
         for(std::vector<long>::iterator vIt=closestIds.begin();vIt!=closestIds.end();vIt++){
             addEdge(nextId, *vIt);
         }
