@@ -38,10 +38,20 @@ long AgentHandler::createAgent() {
 }
 
 void AgentHandler::setupAgent(Agent& agent) {
+    int totalDesirability = 0;
+    int currentDesirability = 0;
+    
     agent.traits.push_back(unique_ptr<Trait>(new SexTrait));
     agent.traits.push_back(unique_ptr<Trait> (new AgeTrait));
     agent.traits.push_back(unique_ptr<Trait> (new OccupationTrait));
     agent.traits.push_back(unique_ptr<Trait> (new MeritalStatusTrait));
+    
+    for (int i = 0; agent.traits.size(); ++i) {
+        currentDesirability = rand() % 21;
+        totalDesirability += currentDesirability;
+        agent.desirability.push_back(currentDesirability);
+        agent.desirabilitySum = totalDesirability;
+    }
 }
 
 bool AgentHandler::removeAgent(long agentId) {

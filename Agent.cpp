@@ -13,6 +13,7 @@ using namespace std;
 Agent::Agent(long agentId) {
     this->agentId = agentId;
     this->traits = vector<unique_ptr<Trait>>();
+    this->desirability = vector<int>();
 }
 
 
@@ -21,9 +22,11 @@ double Agent::compareWithAgent(const Agent& otherAgent) const {
     
     //TODO More advanced method of computing similarity between agents.
     for (int i = 0; i < this->traits.size(); i++) {
-        similarityRate += (*this->traits[i]) && (*otherAgent.traits[i]);
+        similarityRate += ((*this->traits[i]) && (*otherAgent.traits[i])) * this->desirability[i];
     }
-    return similarityRate / this->traits.size();
+    
+    cout << similarityRate / this->desirabilitySum << endl;
+    return similarityRate / this->desirabilitySum;
 }
 
 double Agent::operator&& (const Agent& otherAgent) const {

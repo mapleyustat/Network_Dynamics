@@ -35,7 +35,12 @@ private:
     /** 
      Values of an agent
      */
-    std::vector<double> desirability;
+    std::vector<int> desirability;
+    
+    /**
+     Sum of values 
+     */
+    int desirabilitySum;
     
     /**
      Agent class default constructor

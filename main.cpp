@@ -56,6 +56,5 @@ int main() {
     g.generateGraphiz(std::cout);
     //g.generateGraphiz(myfile);
     //myfile.close();
-
     return 0;
 }
