@@ -14,6 +14,7 @@
 #include "Agent.h"
 #include "Trait.h"
 #include "SexTrait.h"
+#include "SocialNetworkAlgorithm.h"
 
 
 using namespace std;
@@ -50,10 +51,23 @@ int main() {
     //////////////////////////////////////////////////////
     
     SocialNetworkGraph g;
-    g.generateSmallWorldSocialGraph(20, 6, 2, 60);
+    
+    g.generateSmallWorldSocialGraph(20, 2, 1, 25);
+    
+    SocialNetworkAlgorithm::NetworkVisitor mVisitor(4);
+    //boost::depth_first_visit(g.mGraph,g.idToVdMap[g.getRandomId()] , boost::visitor(mVisitor),boost::default_color_type());
+    
+    cout<<"danke";
+    
+    
+    boost::depth_first_search(g.mGraph, boost::visitor(mVisitor));
+    
+    cout<<"deupa";
+    
+    
     //ofstream myfile;
     //myfile.open ("/Users/O10/Documents/myfile.dot");
-    g.generateGraphiz(std::cout);
+    //g.generateGraphiz(std::cout);
     //g.generateGraphiz(myfile);
     //myfile.close();
 

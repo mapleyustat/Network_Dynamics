@@ -119,3 +119,10 @@ long SocialNetworkGraph::getRandomId(){
     std::advance(it,rand()%mapSize);
     return it->second;
 }
+
+
+
+
+
+
+

@@ -25,7 +25,7 @@ typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,verte
 
 
 class SocialNetworkGraph{
-private:
+public:
     Graph mGraph;
     map<long,Graph::vertex_descriptor> idToVdMap;
     long getRandomId();
@@ -83,8 +83,6 @@ public:
      @param stream Stream which will be used to export DOT file.
      */
     void generateGraphiz(std::ostream& stream);
-    
-    
 };
 
 #endif
