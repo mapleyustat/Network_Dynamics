@@ -16,8 +16,19 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
 }
 
 void SocialNetworkStatistics::calculateDegree() {
+    unsigned long degreeSum;
     graph_traits<Graph>::vertex_iterator vIter, vIter_End;
     for (tie(vIter, vIter_End) = vertices(this->graph); vIter != vIter_End; ++vIter) {
-        cout << "I'm inside";
+        unsigned long currentDegree = degree(*vIter, this->graph);
+        
+        this->degrees.push_back(currentDegree);
+        if (currentDegree > this->degreeMaximum) {
+            this->degreeMaximum = currentDegree;
+        } else if (currentDegree < this->degreeMinimum) {
+            this->degreeMinimum = currentDegree;
+        }
+        cout << "Vertex degree: " << degree(*vIter, this->graph);
     }
+    this->degreeAverage = (double) degreeSum / degrees.size();
+    cout << "Degree AVG: " << this->degreeAverage << " MIN: " << this->degreeMinimum << " MAX: " << this->degreeMaximum << endl;
 }

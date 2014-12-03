@@ -16,7 +16,7 @@
 class SocialNetworkStatistics {
 private:
     const Graph& graph;
-    std::vector<int> degrees;
+    std::vector<unsigned long> degrees;
     double degreeAverage;
     double degreeMaximum;
     double degreeMinimum;
