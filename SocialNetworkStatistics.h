@@ -9,9 +9,10 @@
 #ifndef __Network_Dynamics__SocialNetworkStatistics__
 #define __Network_Dynamics__SocialNetworkStatistics__
 
-#include <stdio.h>
-#include "SocialNetworkGraph.h"
+#include <iostream>
+#include <vector>
 
+#include "SocialNetworkHeaders.h"
 
 class SocialNetworkStatistics {
 private:

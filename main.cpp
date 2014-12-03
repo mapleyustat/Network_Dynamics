@@ -52,7 +52,7 @@ int main() {
     
     SocialNetworkGraph g;
     
-    g.generateSmallWorldSocialGraph(20, 2, 1, 25);
+    g.generateSmallWorldSocialGraph(2000, 20, 5, 25);
     
     SocialNetworkAlgorithm::NetworkVisitor mVisitor(4);
     //boost::depth_first_visit(g.mGraph,g.idToVdMap[g.getRandomId()] , boost::visitor(mVisitor),boost::default_color_type());
@@ -63,7 +63,8 @@ int main() {
     //boost::depth_first_search(g.mGraph, boost::visitor(mVisitor));
     
     cout<<"deupa";
-    g.getStatistics().calculateDegree();
+    //g.getStatistics().calculateDegree();
+    g.socialNetworkStatistics.calculateDegree();
     
     //ofstream myfile;
     //myfile.open ("/Users/O10/Documents/myfile.dot");

@@ -8,21 +8,14 @@
 
 #ifndef Social_Network_SocialNetworkGraph_h
 #define Social_Network_SocialNetworkGraph_h
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/graphviz.hpp>
+
 #include "Agent.h"
+#include "SocialNetworkHeaders.h"
 #include "SocialNetworkStatistics.h"
 #include "AgentHandler.h"
 #include <map>
 
-using namespace boost;
 using namespace std;
-
-struct vertex_info {
-    long vertex_id;
-};
-
-typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,vertex_info> Graph;
 
 
 class SocialNetworkGraph{
@@ -31,7 +24,8 @@ private:
     map<long,Graph::vertex_descriptor> idToVdMap;
     long getRandomId();
     friend class SocialNetworkAlgorithm;
-    SocialNetworkStatistics& socialNetworkStatistics;
+public:
+    SocialNetworkStatistics socialNetworkStatistics;
     
     
 public:
@@ -40,7 +34,7 @@ public:
      */
     SocialNetworkGraph();
     
-    SocialNetworkStatistics getStatistics(){
+    SocialNetworkStatistics& getStatistics(){
         return socialNetworkStatistics;
     }
     

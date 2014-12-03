@@ -34,7 +34,7 @@ void SocialNetworkGraph::removeEdge(long id1, long id2){
     mGraph.remove_edge(edgePair.first);
 }
 
-SocialNetworkGraph::SocialNetworkGraph():socialNetworkStatistics(*this){
+SocialNetworkGraph::SocialNetworkGraph() : socialNetworkStatistics(mGraph) {
 }
 
 

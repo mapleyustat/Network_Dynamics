@@ -12,8 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include "SocialNetworkGraph.h"
-#include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/depth_first_search.hpp>
+
 
 class SocialNetworkAlgorithm{
 private:
