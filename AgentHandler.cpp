@@ -46,7 +46,7 @@ void AgentHandler::setupAgent(Agent& agent) {
     agent.traits.push_back(unique_ptr<Trait> (new OccupationTrait));
     agent.traits.push_back(unique_ptr<Trait> (new MeritalStatusTrait));
     
-    for (int i = 0; agent.traits.size(); ++i) {
+    for (int i = 0; i < agent.traits.size(); ++i) {
         currentDesirability = rand() % 21;
         totalDesirability += currentDesirability;
         agent.desirability.push_back(currentDesirability);

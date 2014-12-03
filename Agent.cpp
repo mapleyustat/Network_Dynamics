@@ -25,7 +25,6 @@ double Agent::compareWithAgent(const Agent& otherAgent) const {
         similarityRate += ((*this->traits[i]) && (*otherAgent.traits[i])) * this->desirability[i];
     }
     
-    cout << similarityRate / this->desirabilitySum << endl;
     return similarityRate / this->desirabilitySum;
 }
 
