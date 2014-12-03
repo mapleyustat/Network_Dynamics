@@ -34,9 +34,10 @@ void SocialNetworkGraph::removeEdge(long id1, long id2){
     mGraph.remove_edge(edgePair.first);
 }
 
-SocialNetworkGraph::SocialNetworkGraph(){
-    
+SocialNetworkGraph::SocialNetworkGraph():socialNetworkStatistics(*this){
 }
+
+
 
 void SocialNetworkGraph::generateGraphiz(std::ostream& stream){
     //std::ofstream dotfile (filename);

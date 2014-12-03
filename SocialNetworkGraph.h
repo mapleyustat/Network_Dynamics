@@ -11,6 +11,7 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graphviz.hpp>
 #include "Agent.h"
+#include "SocialNetworkStatistics.h"
 #include "AgentHandler.h"
 #include <map>
 
@@ -25,16 +26,23 @@ typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,verte
 
 
 class SocialNetworkGraph{
-public:
+private:
     Graph mGraph;
     map<long,Graph::vertex_descriptor> idToVdMap;
     long getRandomId();
+    friend class SocialNetworkAlgorithm;
+    SocialNetworkStatistics& socialNetworkStatistics;
+    
     
 public:
     /**
      SocialNetworkGraph default constructor.
      */
     SocialNetworkGraph();
+    
+    SocialNetworkStatistics getStatistics(){
+        return socialNetworkStatistics;
+    }
     
     /**
      Function adds edge beetween 2 agents.

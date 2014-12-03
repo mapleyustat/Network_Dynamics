@@ -28,11 +28,24 @@ void SocialNetworkAlgorithm::NetworkVisitor::finish_vertex(boost::graph_traits<G
     curentDepthCount--;
 }
 
-bool::SocialNetworkAlgorithm::NetworkVisitor::operator()(){
+bool SocialNetworkAlgorithm::NetworkVisitor::operator()(){
     if(curentDepthCount+1>maxDepth){
         return true;
     }
     else{
         return false;
+    }
+}
+
+void SocialNetworkAlgorithm::makeRandomConnections(int randomConnectionCount){
+    long firstID,secondId;
+    
+    for(int i=0;i<randomConnectionCount;i++){
+        firstID = socialNetorkGraph.getRandomId();
+        secondId = socialNetorkGraph.getRandomId();
+        
+        if(firstID!=secondId){
+            socialNetorkGraph.addEdge(firstID, secondId);
+        }
     }
 }

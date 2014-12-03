@@ -60,10 +60,10 @@ int main() {
     cout<<"danke";
     
     
-    boost::depth_first_search(g.mGraph, boost::visitor(mVisitor));
+    //boost::depth_first_search(g.mGraph, boost::visitor(mVisitor));
     
     cout<<"deupa";
-    
+    g.getStatistics().calculateDegree();
     
     //ofstream myfile;
     //myfile.open ("/Users/O10/Documents/myfile.dot");

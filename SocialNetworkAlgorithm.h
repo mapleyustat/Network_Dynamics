@@ -16,9 +16,15 @@
 #include <boost/graph/depth_first_search.hpp>
 
 class SocialNetworkAlgorithm{
-public:
+private:
+    
     std::vector<std::pair<long,int>> getIdDistancePairs(int DFSlimit);
     std::vector<std::pair<long,int>> collectedPairs;
+    
+    SocialNetworkGraph socialNetorkGraph;
+    
+public:
+    void makeRandomConnections(int randomConnectionCount);
     
     class NetworkVisitor:public boost::default_dfs_visitor {
     private:
