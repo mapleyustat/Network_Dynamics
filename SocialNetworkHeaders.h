@@ -1,0 +1,23 @@
+//
+//  SocialNetworkHeader.h
+//  Network_Dynamics
+//
+//  Created by Wojciech Kryscinski on 03/12/14.
+//  Copyright (c) 2014 Wojtek. All rights reserved.
+//
+
+#ifndef Network_Dynamics_SocialNetworkHeader_h
+#define Network_Dynamics_SocialNetworkHeader_h
+
+#include <boost/graph/adjacency_list.hpp>
+#include <boost/graph/depth_first_search.hpp>
+#include <boost/graph/graphviz.hpp>
+
+struct vertex_info {
+    long vertex_id;
+};
+
+typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,vertex_info> Graph;
+
+
+#endif
