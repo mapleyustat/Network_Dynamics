@@ -12,17 +12,28 @@
 #include <stdio.h>
 #include <vector>
 #include "SocialNetworkGraph.h"
-
+template <typename K, typename V>
+V GetWithDef(const  std::map <K,V> & m, const K & key, const V & defval ) {
+    typename std::map<K,V>::const_iterator it = m.find( key );
+    if ( it == m.end() ) {
+        return defval;
+    }
+    else {
+        return it->second;
+    }
+}
 
 class SocialNetworkAlgorithm{
 private:
-    
-    std::vector<std::pair<long,int>> getIdDistancePairs(int DFSlimit);
+    SocialNetworkGraph& socialNetorkGraph;
     std::vector<std::pair<long,int>> collectedPairs;
-    
-    SocialNetworkGraph socialNetorkGraph;
+    void limitedDFS(long startId, long currentId,int DFSlimit,int currentLevel,std::vector<std::pair<long, double>>& retVector,std::map<long,bool>& visitMap);
     
 public:
+    SocialNetworkAlgorithm(SocialNetworkGraph& graph):socialNetorkGraph(graph){}
+    std::vector<std::pair<long,double>> getIdDistancePairs(long startdId,int DFSlimit);
+    
+    
     void makeRandomConnections(int randomConnectionCount);
     
     class NetworkVisitor:public boost::default_dfs_visitor {

@@ -8,10 +8,35 @@
 
 #include "SocialNetworkAlgorithm.h"
 
-std::vector<std::pair<long, int>> SocialNetworkAlgorithm::getIdDistancePairs(int DFSlimit){
-    std::vector<std::pair<long, int>> retVector;
+std::vector<std::pair<long,double>> SocialNetworkAlgorithm::getIdDistancePairs(long startId,int DFSlimit){
+    std::vector<std::pair<long, double>> retVector;
+    std::map<long,bool> isVisited;
+    isVisited[startId]=true;
+    Graph::adjacency_iterator vertexIt, vertexEnd;
+    boost::tie(vertexIt, vertexEnd) = adjacent_vertices( socialNetorkGraph.idToVdMap[startId], socialNetorkGraph.mGraph );
+    for (; vertexIt != vertexEnd; ++vertexIt){
+        limitedDFS(startId,socialNetorkGraph.mGraph[(*vertexIt)].vertex_id,DFSlimit,1,retVector,isVisited);
+    }
     return retVector;
 }
+
+void SocialNetworkAlgorithm::limitedDFS(long startId,long currentId, int DFSlimit,int currentLevel,std::vector<std::pair<long, double>>& retVector,std::map<long,bool>& visitMap){
+    bool wasVisited=GetWithDef(visitMap,currentId,false);
+    if(wasVisited==true||currentLevel>DFSlimit){
+        return;
+    }
+    visitMap[currentId]=true;
+    
+    retVector.push_back(pair<long,double>(currentId,AgentHandler::getInstance().compareAgents(startId,currentId)));
+    
+    Graph::adjacency_iterator vertexIt, vertexEnd;
+    boost::tie(vertexIt, vertexEnd) = adjacent_vertices( socialNetorkGraph.idToVdMap[currentId], socialNetorkGraph.mGraph );
+    for (; vertexIt != vertexEnd; ++vertexIt){
+        limitedDFS(startId,socialNetorkGraph.mGraph[(*vertexIt)].vertex_id,DFSlimit,currentLevel+1,retVector,visitMap);
+    }
+    
+}
+
 
 SocialNetworkAlgorithm::NetworkVisitor::NetworkVisitor(int maxDepth){
     this->maxDepth=maxDepth;
