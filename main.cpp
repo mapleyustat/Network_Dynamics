@@ -24,64 +24,39 @@ using namespace boost;
 
 int main() {
     srand (1);
-    
-//    AgentHandler& agentHandler = AgentHandler::getInstance();
-//    auto agentA = agentHandler.createAgent();
-//    auto agentB = agentHandler.createAgent();
-//    auto agentC = agentHandler.createAgent();
-//    auto agentD = agentHandler.createAgent();
-//    auto agentE = agentHandler.createAgent();
-//    
-//    agentHandler.printAgent(agentA);
-//    agentHandler.printAgent(agentB);
-//    agentHandler.printAgent(agentC);
-//    agentHandler.printAgent(agentD);
-//    agentHandler.printAgent(agentE);
-//    
-//    auto closest = agentHandler.findClosestAgents(agentA, 3);
-//    cout << "Found closest:" << endl;
-//    for (auto const& item : closest) {
-//        cout << item << " ";
-//    }
-//    cout << endl;
-//    
-//    cout << "Agent similarity: " << agentHandler.compareAgents(agentA, agentB) << endl;
-//    
-//    
-    
-    //////////////////////////////////////////////////////
+    //ofstream myfile;
+    //myfile.open ("/Users/O10/Documents/myfile.dot");
     
     SocialNetworkGraph g;
+    SocialNetworkAlgorithm algorithms(g);
+    g.generateSmallWorldSocialGraph(100, 30, 3, 15);
     
-    g.generateSmallWorldSocialGraph(20, 2, 2, 15);
-    
-    SocialNetworkAlgorithm::NetworkVisitor mVisitor(4);
-    //boost::depth_first_visit(g.mGraph,g.idToVdMap[g.getRandomId()] , boost::visitor(mVisitor),boost::default_color_type());
-    
-    cout<<"danke";
-    
-    
-    //boost::depth_first_search(g.mGraph, boost::visitor(mVisitor));
-    
-    cout<<"deupa" << endl;
-    //g.getStatistics().calculateDegree();
     g.socialNetworkStatistics.calculateStatistics();
     g.socialNetworkStatistics.printStatistics();
     
-    //ofstream myfile;
-    //myfile.open ("/Users/O10/Documents/myfile.dot");
-    g.generateGraphiz(std::cout);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    g.socialNetworkStatistics.calculateStatistics();
+    g.socialNetworkStatistics.printStatistics();
     
-    SocialNetworkAlgorithm algorithms(g);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    g.socialNetworkStatistics.calculateStatistics();
+    g.socialNetworkStatistics.printStatistics();
     
-//    std::vector<std::pair<long,double>> wektor=algorithms.getIdDistancePairs(1, 2);
-//    
-//    for(std::vector<std::pair<long,double>>::iterator it=wektor.begin();it!=wektor.end();it++){
-//        cout<<"ID: "<<(*it).first<<" podobieństwo: "<<(*it).second<<endl;
-//    }
-    algorithms.makeMove(0.1, 2, 1);
-    
-    
+    //SocialNetworkAlgorithm::NetworkVisitor mVisitor(4);
+    //boost::depth_first_visit(g.mGraph,g.idToVdMap[g.getRandomId()] , boost::visitor(mVisitor),boost::default_color_type());
+    //boost::depth_first_search(g.mGraph, boost::visitor(mVisitor))
+    //std::vector<std::pair<long,double>> wektor=algorithms.getIdDistancePairs(1, 2);
+    //for(std::vector<std::pair<long,double>>::iterator it=wektor.begin();it!=wektor.end();it++){
+    //    cout<<"ID: "<<(*it).first<<" podobieństwo: "<<(*it).second<<endl;
+    //}
     //g.generateGraphiz(myfile);
     //myfile.close();
     return 0;

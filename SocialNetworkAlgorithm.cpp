@@ -50,7 +50,7 @@ void SocialNetworkAlgorithm::makeMove(double DFSprobability,int DFSlimit,int one
             start=currentIt=bestMatches.begin();
             for(;currentIt!=bestMatches.end()||(currentIt-start)<oneNodeConnections;currentIt++){
                 socialNetorkGraph.addEdge(pair.first, (*currentIt).first);
-                cout<<"Adding edge "<<pair.first<<"-"<<(*currentIt).first<<endl;
+                //cout<<"Adding edge "<<pair.first<<"-"<<(*currentIt).first<<endl;
             }
         }
     }
@@ -63,12 +63,12 @@ SocialNetworkAlgorithm::NetworkVisitor::NetworkVisitor(int maxDepth){
 }
 
 void SocialNetworkAlgorithm::NetworkVisitor::discover_vertex(boost::graph_traits<Graph>::vertex_descriptor u, Graph g){
-    cout<<"discover vertex called current Depth "<<curentDepthCount<<endl;
+    //cout<<"discover vertex called current Depth "<<curentDepthCount<<endl;
     curentDepthCount++;
 }
 
 void SocialNetworkAlgorithm::NetworkVisitor::finish_vertex(boost::graph_traits<Graph>::vertex_descriptor u, Graph g){
-    cout<<"finish vertex called current Depth "<<curentDepthCount<<endl;
+    //cout<<"finish vertex called current Depth "<<curentDepthCount<<endl;
     curentDepthCount--;
 }
 
