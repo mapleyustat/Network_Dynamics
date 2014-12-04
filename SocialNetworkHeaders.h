@@ -18,6 +18,8 @@ struct vertex_info {
 };
 
 typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,vertex_info> Graph;
-
+typedef boost::graph_traits<Graph>::vertex_iterator VertexIterator;
+typedef boost::graph_traits<Graph>::vertex_descriptor Vertex;
+typedef boost::graph_traits<Graph>::edge_descriptor Edge;
 
 #endif
