@@ -25,7 +25,7 @@ private:
     double degreeAverage;
     double clusteringCoefficient;
     
-    void calculateNodeDegrees();
+    void calculateAverageDegree();
     void calculateClusteringCoefficient();
     
 public:

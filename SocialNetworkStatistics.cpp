@@ -16,11 +16,11 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
     
 }
 void SocialNetworkStatistics::calculateStatistics() {
-    this->calculateNodeDegrees();
+    this->calculateAverageDegree();
     this->calculateClusteringCoefficient();
 }
 
-void SocialNetworkStatistics::calculateNodeDegrees() {
+void SocialNetworkStatistics::calculateAverageDegree() {
         this->degreeAverage = (double) num_edges(this->graph) / num_vertices(this->graph);
 }
 
