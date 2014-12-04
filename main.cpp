@@ -62,9 +62,10 @@ int main() {
     
     //boost::depth_first_search(g.mGraph, boost::visitor(mVisitor));
     
-    cout<<"deupa";
+    cout<<"deupa" << endl;
     //g.getStatistics().calculateDegree();
-    g.socialNetworkStatistics.calculateDegree();
+    g.socialNetworkStatistics.calculateStatistics();
+    g.socialNetworkStatistics.printStatistics();
     
     //ofstream myfile;
     //myfile.open ("/Users/O10/Documents/myfile.dot");

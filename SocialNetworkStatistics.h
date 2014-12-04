@@ -11,20 +11,29 @@
 
 #include <iostream>
 #include <vector>
-
+#include <boost/graph/clustering_coefficient.hpp>
+#include <boost/graph/exterior_property.hpp>
 #include "SocialNetworkHeaders.h"
+
+typedef boost::exterior_vertex_property<Graph, float> ClusteringProperty;
+typedef ClusteringProperty::container_type ClusteringContainer;
+typedef ClusteringProperty::map_type ClusteringMap;
 
 class SocialNetworkStatistics {
 private:
     const Graph& graph;
-    std::vector<unsigned long> degrees;
     double degreeAverage;
-    double degreeMaximum;
-    double degreeMinimum;
+    double clusteringCoefficient;
+    
+    void calculateNodeDegrees();
+    void calculateClusteringCoefficient();
     
 public:
     SocialNetworkStatistics(const Graph& graphReference);
-    void calculateDegree();
+    void calculateStatistics();
+    void printStatistics();
+    
+
     
 };
 

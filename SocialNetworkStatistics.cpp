@@ -13,25 +13,25 @@ using namespace std;
 
 SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : graph(graphReference) {
     this->degreeAverage = 0;
-    this->degreeMinimum = INT_MAX;
-    this->degreeMaximum = INT_MIN;
     
 }
+void SocialNetworkStatistics::calculateStatistics() {
+    this->calculateNodeDegrees();
+    this->calculateClusteringCoefficient();
+}
 
-void SocialNetworkStatistics::calculateDegree() {
-    unsigned long degreeSum = 0;
-    graph_traits<Graph>::vertex_iterator vIter, vIter_End;
-    for (tie(vIter, vIter_End) = vertices(this->graph); vIter != vIter_End; ++vIter) {
-        unsigned long currentDegree = degree(*vIter, this->graph);
-        
-        this->degrees.push_back(currentDegree);
-        degreeSum += currentDegree;
-        if (currentDegree > this->degreeMaximum) {
-            this->degreeMaximum = currentDegree;
-        } else if (currentDegree < this->degreeMinimum) {
-            this->degreeMinimum = currentDegree;
-        }
-    }
-    this->degreeAverage = (double)  degreeSum / degrees.size();
-    cout << "Degree AVG: " << this->degreeAverage << " MIN: " << this->degreeMinimum << " MAX: " << this->degreeMaximum << endl;
+void SocialNetworkStatistics::calculateNodeDegrees() {
+        this->degreeAverage = (double) num_edges(this->graph) / num_vertices(this->graph);
+}
+
+void SocialNetworkStatistics::calculateClusteringCoefficient() {
+    ClusteringContainer coefs(num_vertices(this->graph));
+    ClusteringMap clusterMap(coefs, this->graph);
+    this->clusteringCoefficient = all_clustering_coefficients(this->graph, clusterMap);
+}
+
+void SocialNetworkStatistics::printStatistics() {
+    cout << "====== SOCIAL GRAPH STATS ======" << endl;
+    cout << "Average degree: " << this->degreeAverage << endl;
+    cout << "Clustering Coefficient: " << this->clusteringCoefficient << endl;
 }
