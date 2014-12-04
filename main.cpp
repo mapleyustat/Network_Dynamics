@@ -74,11 +74,14 @@ int main() {
     
     SocialNetworkAlgorithm algorithms(g);
     
-    std::vector<std::pair<long,double>> wektor=algorithms.getIdDistancePairs(1, 2);
+//    std::vector<std::pair<long,double>> wektor=algorithms.getIdDistancePairs(1, 2);
+//    
+//    for(std::vector<std::pair<long,double>>::iterator it=wektor.begin();it!=wektor.end();it++){
+//        cout<<"ID: "<<(*it).first<<" podobieństwo: "<<(*it).second<<endl;
+//    }
+    algorithms.makeMove(0.1, 2, 1);
     
-    for(std::vector<std::pair<long,double>>::iterator it=wektor.begin();it!=wektor.end();it++){
-        cout<<"ID: "<<(*it).first<<" podobieństwo: "<<(*it).second<<endl;
-    }
+    
     //g.generateGraphiz(myfile);
     //myfile.close();
     return 0;

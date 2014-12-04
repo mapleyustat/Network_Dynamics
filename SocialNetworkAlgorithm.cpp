@@ -17,6 +17,8 @@ std::vector<std::pair<long,double>> SocialNetworkAlgorithm::getIdDistancePairs(l
     for (; vertexIt != vertexEnd; ++vertexIt){
         limitedDFS(startId,socialNetorkGraph.mGraph[(*vertexIt)].vertex_id,DFSlimit,1,retVector,isVisited);
     }
+    SimillarityComparator comp;
+    std::sort (retVector.begin(), retVector.end(), comp);
     return retVector;
 }
 
@@ -35,6 +37,23 @@ void SocialNetworkAlgorithm::limitedDFS(long startId,long currentId, int DFSlimi
         limitedDFS(startId,socialNetorkGraph.mGraph[(*vertexIt)].vertex_id,DFSlimit,currentLevel+1,retVector,visitMap);
     }
     
+}
+
+void SocialNetworkAlgorithm::makeMove(double DFSprobability,int DFSlimit,int oneNodeConnections){
+    typedef std::map<long,Graph::vertex_descriptor> map_t;
+    BOOST_FOREACH( map_t::value_type& pair, socialNetorkGraph.idToVdMap)
+    {
+        if(rand()%1000<DFSprobability*1000){
+            
+            std::vector<std::pair<long,double>> bestMatches=getIdDistancePairs(pair.first,DFSlimit);
+            std::vector<std::pair<long,double>>::iterator start,currentIt;
+            start=currentIt=bestMatches.begin();
+            for(;currentIt!=bestMatches.end()||(currentIt-start)<oneNodeConnections;currentIt++){
+                socialNetorkGraph.addEdge(pair.first, (*currentIt).first);
+                cout<<"Adding edge "<<pair.first<<"-"<<(*currentIt).first<<endl;
+            }
+        }
+    }
 }
 
 
