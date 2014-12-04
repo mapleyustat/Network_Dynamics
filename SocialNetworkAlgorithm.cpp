@@ -28,9 +28,10 @@ void SocialNetworkAlgorithm::limitedDFS(long startId,long currentId, int DFSlimi
         return;
     }
     visitMap[currentId]=true;
-    
-    retVector.push_back(pair<long,double>(currentId,AgentHandler::getInstance().compareAgents(startId,currentId)));
-    
+    pair<Graph::edge_descriptor, bool> edge=boost::edge(socialNetorkGraph.idToVdMap[startId],socialNetorkGraph.idToVdMap[currentId],socialNetorkGraph.mGraph);
+    if(currentLevel!=1&&edge.second==false){
+        retVector.push_back(pair<long,double>(currentId,AgentHandler::getInstance().compareAgents(startId,currentId)));
+    }
     Graph::adjacency_iterator vertexIt, vertexEnd;
     boost::tie(vertexIt, vertexEnd) = adjacent_vertices( socialNetorkGraph.idToVdMap[currentId], socialNetorkGraph.mGraph );
     for (; vertexIt != vertexEnd; ++vertexIt){
@@ -48,7 +49,7 @@ void SocialNetworkAlgorithm::makeMove(double DFSprobability,int DFSlimit,int one
             std::vector<std::pair<long,double>> bestMatches=getIdDistancePairs(pair.first,DFSlimit);
             std::vector<std::pair<long,double>>::iterator start,currentIt;
             start=currentIt=bestMatches.begin();
-            for(;currentIt!=bestMatches.end()||(currentIt-start)<oneNodeConnections;currentIt++){
+            for(;currentIt!=bestMatches.end()&&(currentIt-start)<oneNodeConnections;currentIt++){
                 socialNetorkGraph.addEdge(pair.first, (*currentIt).first);
                 //cout<<"Adding edge "<<pair.first<<"-"<<(*currentIt).first<<endl;
             }
