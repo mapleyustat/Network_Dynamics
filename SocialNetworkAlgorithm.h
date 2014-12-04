@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <boost/foreach.hpp>
 #include "SocialNetworkGraph.h"
 template <typename K, typename V>
 V GetWithDef(const  std::map <K,V> & m, const K & key, const V & defval ) {
@@ -22,17 +23,20 @@ V GetWithDef(const  std::map <K,V> & m, const K & key, const V & defval ) {
         return it->second;
     }
 }
+struct SimillarityComparator {
+    bool operator() (std::pair<long,double> i,std::pair<long,double> j) { return (i.second>j.second);}
+};
 
 class SocialNetworkAlgorithm{
 private:
     SocialNetworkGraph& socialNetorkGraph;
-    std::vector<std::pair<long,int>> collectedPairs;
     void limitedDFS(long startId, long currentId,int DFSlimit,int currentLevel,std::vector<std::pair<long, double>>& retVector,std::map<long,bool>& visitMap);
     
 public:
     SocialNetworkAlgorithm(SocialNetworkGraph& graph):socialNetorkGraph(graph){}
     std::vector<std::pair<long,double>> getIdDistancePairs(long startdId,int DFSlimit);
     
+    void makeMove(double DFSprobability,int DFSlimit,int oneNodeConnections);
     
     void makeRandomConnections(int randomConnectionCount);
     
