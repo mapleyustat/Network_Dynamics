@@ -15,6 +15,7 @@
 #include "Trait.h"
 #include "SexTrait.h"
 #include "SocialNetworkAlgorithm.h"
+#include "SocialNetworkAlgorithm.h"
 
 
 using namespace std;
@@ -69,7 +70,15 @@ int main() {
     
     //ofstream myfile;
     //myfile.open ("/Users/O10/Documents/myfile.dot");
-    //g.generateGraphiz(std::cout);
+    g.generateGraphiz(std::cout);
+    
+    SocialNetworkAlgorithm algorithms(g);
+    
+    std::vector<std::pair<long,double>> wektor=algorithms.getIdDistancePairs(1, 2);
+    
+    for(std::vector<std::pair<long,double>>::iterator it=wektor.begin();it!=wektor.end();it++){
+        cout<<"ID: "<<(*it).first<<" podobieństwo: "<<(*it).second<<endl;
+    }
     //g.generateGraphiz(myfile);
     //myfile.close();
     return 0;
