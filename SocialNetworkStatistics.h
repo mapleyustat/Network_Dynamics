@@ -12,21 +12,29 @@
 #include <iostream>
 #include <vector>
 #include <boost/graph/clustering_coefficient.hpp>
+#include <boost/graph/geodesic_distance.hpp>
+#include <boost/graph/floyd_warshall_shortest.hpp>
 #include <boost/graph/exterior_property.hpp>
 #include "SocialNetworkHeaders.h"
 
-typedef boost::exterior_vertex_property<Graph, float> ClusteringProperty;
-typedef ClusteringProperty::container_type ClusteringContainer;
-typedef ClusteringProperty::map_type ClusteringMap;
+typedef boost::exterior_vertex_property<Graph, float> AlgorithmProperty;
+typedef AlgorithmProperty::container_type AlgorithmContainer;
+typedef AlgorithmProperty::map_type AlgorithmMap;
+typedef boost::exterior_vertex_property<Graph, int> DistanceProperty;
+typedef DistanceProperty::matrix_type DistanceMatrix;
+typedef DistanceProperty::matrix_map_type DistanceMatrixMap;
+typedef boost::constant_property_map<Edge, int> WeightMap;
 
 class SocialNetworkStatistics {
 private:
     const Graph& graph;
     double degreeAverage;
     double clusteringCoefficient;
+    double smallWorldDistance;
     
     void calculateAverageDegree();
     void calculateClusteringCoefficient();
+    void calculateMeanGeodesicDistance();
     
 public:
     SocialNetworkStatistics(const Graph& graphReference);

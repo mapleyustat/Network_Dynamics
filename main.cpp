@@ -52,7 +52,7 @@ int main() {
     
     SocialNetworkGraph g;
     
-    g.generateSmallWorldSocialGraph(2000, 20, 5, 25);
+    g.generateSmallWorldSocialGraph(10, 3, 1, 25);
     
     SocialNetworkAlgorithm::NetworkVisitor mVisitor(4);
     //boost::depth_first_visit(g.mGraph,g.idToVdMap[g.getRandomId()] , boost::visitor(mVisitor),boost::default_color_type());
