@@ -17,7 +17,7 @@
 #include "SocialNetworkAlgorithm.h"
 #include "SocialNetworkAlgorithm.h"
 
-
+#include <map>
 using namespace std;
 using namespace boost;
 
@@ -29,29 +29,26 @@ int main() {
     
     SocialNetworkGraph g;
     SocialNetworkAlgorithm algorithms(g);
-    g.generateSmallWorldSocialGraph(300, 10, 3, 15);
+
+    g.generateSmallWorldSocialGraph(1500, 15, 3, 15);
     
     g.socialNetworkStatistics.calculateStatistics();
     g.socialNetworkStatistics.printStatistics();
     
-    for(int i=0;i<10;i++){
-        
+
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    g.socialNetworkStatistics.calculateStatistics();
+    g.socialNetworkStatistics.printStatistics();
     
-    algorithms.makeMove(0.01, 2, 1);
-    algorithms.makeMove(0.1, 3, 1);
-    algorithms.makeMove(0.1, 2, 1);
-    algorithms.makeMove(0.1, 2, 1);
-    algorithms.makeMove(0.01, 2, 1);
-    //g.socialNetworkStatistics.calculateStatistics();
-    //g.socialNetworkStatistics.printStatistics();
-    
-//    g.generateGraphiz(std::cout);
-    
-    algorithms.makeMove(0.01, 2, 1);
-    algorithms.makeMove(0.01, 4, 1);
-    algorithms.makeMove(0.1, 3, 1);
-    algorithms.makeMove(0.1, 2, 1);
-        algorithms.makeMove(0.1, 2, 1);}
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
+    algorithms.makeMove(0.01, 2, 2);
     g.socialNetworkStatistics.calculateStatistics();
     g.socialNetworkStatistics.printStatistics();
     

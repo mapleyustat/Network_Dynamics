@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
+#include <boost/graph/subgraph.hpp>
 #include <boost/graph/clustering_coefficient.hpp>
 #include <boost/graph/geodesic_distance.hpp>
 #include <boost/graph/floyd_warshall_shortest.hpp>
@@ -27,14 +29,34 @@ typedef boost::constant_property_map<Edge, int> WeightMap;
 
 class SocialNetworkStatistics {
 private:
+    /*
+     Graph on which statistics will be performed
+     */
     const Graph& graph;
+    
+    /* 
+     Average vertex degree in analyzed graph.
+     */
     double degreeAverage;
+    
+    /*
+     Clustering coefficient in analyzed graph.
+     */
     double clusteringCoefficient;
+    
+    /*
+     Average small world distance between vertices.
+     */
     double smallWorldDistance;
     
-    void calculateAverageDegree();
-    void calculateClusteringCoefficient();
-    void calculateMeanGeodesicDistance();
+    /*
+     Vertex degree histogram.
+     */
+    std::map<unsigned long, int> degreeHistogram;
+    
+    void calculateDegreeHistogram(const Graph& analyzedGraph);
+    void calculateClusteringCoefficient(const Graph& analyzedGraph);
+    void calculateMeanGeodesicDistance(const Graph& analyzedGraph);
     
 public:
     SocialNetworkStatistics(const Graph& graphReference);
