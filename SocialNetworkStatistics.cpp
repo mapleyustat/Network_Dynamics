@@ -17,7 +17,10 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
     this->smallWorldDistance = 0;
     
 }
-void SocialNetworkStatistics::calculateStatistics() { 
+void SocialNetworkStatistics::calculateStatistics() {
+//    VertexIterator iterBegin, iterEnd;
+//    tie(iterBegin, iterEnd) = vertices(this->graph);
+//    SubGraph sb(*iterBegin, *iterEnd);
     this->calculateDegreeHistogram(this->graph);
     this->calculateClusteringCoefficient(this->graph);
     //this->calculateMeanGeodesicDistance();

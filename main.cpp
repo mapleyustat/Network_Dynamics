@@ -30,7 +30,7 @@ int main() {
     SocialNetworkGraph g;
     SocialNetworkAlgorithm algorithms(g);
 
-    g.generateSmallWorldSocialGraph(1500, 15, 3, 15);
+    g.generateSmallWorldSocialGraph(300, 15, 3, 15);
     
     g.socialNetworkStatistics.calculateStatistics();
     g.socialNetworkStatistics.printStatistics();

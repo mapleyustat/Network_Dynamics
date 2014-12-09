@@ -15,14 +15,29 @@
 void SocialNetworkGraph::addAgent(long id){
     Graph::vertex_descriptor v = boost::add_vertex(mGraph);
     mGraph[v].vertex_id=id;
+    mGraph[v].weight_pool=rand()%(maxWeightPool-minWeightPool)+minWeightPool;
     idToVdMap.insert(std::pair<long,Graph::vertex_descriptor>(id,v));
 }
 
 void SocialNetworkGraph::addEdge(long idAgent1,long idAgent2){
     Graph::vertex_descriptor v1=idToVdMap[idAgent1];
     Graph::vertex_descriptor v2=idToVdMap[idAgent2];
+    AgentHandler& agenthandler=AgentHandler::getInstance();
 
+    int weightPooled=agenthandler.compareAgents(idAgent1, idAgent2);
+//
+//    
+//    if(mGraph[v1].weight_pool-weightPooled<0){
+//        adjustEdges(abs(mGraph[v1].weight_pool-weightPooled));
+//    }
+//    else if(mGraph[v2].weight_pool-weightPooled<0){
+//        adjustEdges(abs(mGraph[v2].weight_pool-weightPooled));
+//    }
     boost::add_edge(v1,v2,mGraph);
+}
+
+void SocialNetworkGraph::adjustEdges(Graph::vertex_descriptor v,int weightDifference){
+    unsigned long vertexDegree=boost::degree(v,mGraph);
 }
 
 void SocialNetworkGraph::removeEdge(long id1, long id2){

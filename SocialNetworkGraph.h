@@ -13,6 +13,7 @@
 #include "SocialNetworkHeaders.h"
 #include "SocialNetworkStatistics.h"
 #include "AgentHandler.h"
+#include <cmath>
 #include <map>
 
 using namespace std;
@@ -24,6 +25,10 @@ private:
     map<long,Graph::vertex_descriptor> idToVdMap;
     long getRandomId();
     friend class SocialNetworkAlgorithm;
+    const int minWeightPool=350;
+    const int maxWeightPool=550;
+    void adjustEdges(Graph::vertex_descriptor,int weightDifference);
+    const int multiplyCoefficient=30;
 public:
     SocialNetworkStatistics socialNetworkStatistics;
     

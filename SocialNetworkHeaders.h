@@ -15,11 +15,16 @@
 
 struct vertex_info {
     long vertex_id;
+    int weight_pool;
 };
 
-typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,vertex_info> Graph;
+struct edge_info {
+    long edge_weight;
+};
+
+typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,vertex_info,edge_info> Graph;
 //typedef boost::subgraph< boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_index_t, int>, boost::property<boost::edge_index_t, int>>> Graph; <- bardzo chcemy
-//typedef boost::subgraph< boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS, boost::property<boost::vertex_index_t, int>, boost::property<boost::edge_index_t, int>>> SubGraph; <- potrzebne
+typedef boost::subgraph< boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS, vertex_info, edge_info>> SubGraph;
 typedef boost::graph_traits<Graph>::vertex_iterator VertexIterator;
 typedef boost::graph_traits<Graph>::vertex_descriptor Vertex;
 typedef boost::graph_traits<Graph>::edge_descriptor Edge;
