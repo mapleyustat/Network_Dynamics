@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Aleksander Wójcik. All rights reserved.
 //
 
-#include <stdio.h>
+#include <iostream>
 #include "SocialNetworkGraph.h"
 #include "AgentHandler.h"
 
+using namespace std;
 
 
 void SocialNetworkGraph::addAgent(long id){

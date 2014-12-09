@@ -14,49 +14,41 @@
 #include "SocialNetworkGraph.h"
 #include "SocialNetworkAlgorithm.h"
 
-
 using namespace boost;
 
-#include <wx/wxprec.h>
+#include "TestApp.h"
 
-#ifndef WX_PRECOMP
-#include <wx/wx.h>
-#endif
-
-int main() {
-    
-    wxPuts(wxT("A wxWidgets console application"));
-    srand (1);
-
-    
-    SocialNetworkGraph g;
-    SocialNetworkAlgorithm algorithms(g);
-
-    g.generateSmallWorldSocialGraph(1500, 15, 3, 15);
-    
-    g.socialNetworkStatistics.calculateStatistics();
-    g.socialNetworkStatistics.printStatistics();
-    
-
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 4, 2);
-   g.socialNetworkStatistics.calculateStatistics();
-    g.socialNetworkStatistics.printStatistics();
-    
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 4, 2);
-    algorithms.makeMove(0.1, 2, 2);
-    algorithms.makeMove(0.1, 2, 2);
-    g.socialNetworkStatistics.calculateStatistics();
-    g.socialNetworkStatistics.printStatistics();
-    
-    //ofstream myfile;
-    //myfile.open ("/Users/O10/Documents/myfile.dot");
-    //g.generateGraphiz(myfile);
-    //myfile.close();
-    return 0;
-}
+//int main() {
+//    srand (1);
+//    
+//    SocialNetworkGraph g;
+//    SocialNetworkAlgorithm algorithms(g);
+//
+//    g.generateSmallWorldSocialGraph(1500, 15, 3, 15);
+//    
+//    g.socialNetworkStatistics.calculateStatistics();
+//    g.socialNetworkStatistics.printStatistics();
+//    
+//
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 4, 2);
+//   g.socialNetworkStatistics.calculateStatistics();
+//    g.socialNetworkStatistics.printStatistics();
+//    
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 4, 2);
+//    algorithms.makeMove(0.1, 2, 2);
+//    algorithms.makeMove(0.1, 2, 2);
+//    g.socialNetworkStatistics.calculateStatistics();
+//    g.socialNetworkStatistics.printStatistics();
+//    
+//    //ofstream myfile;
+//    //myfile.open ("/Users/O10/Documents/myfile.dot");
+//    //g.generateGraphiz(myfile);
+//    //myfile.close();
+//    return 0;
+//}
