@@ -28,9 +28,9 @@ void SocialNetworkAlgorithm::limitedDFS(long startId,long currentId, int DFSlimi
         return;
     }
     visitMap[currentId]=true;
-    pair<Graph::edge_descriptor, bool> edge=boost::edge(socialNetorkGraph.idToVdMap[startId],socialNetorkGraph.idToVdMap[currentId],socialNetorkGraph.mGraph);
+    std::pair<Graph::edge_descriptor, bool> edge=boost::edge(socialNetorkGraph.idToVdMap[startId],socialNetorkGraph.idToVdMap[currentId],socialNetorkGraph.mGraph);
     if(currentLevel!=1&&edge.second==false){
-        retVector.push_back(pair<long,double>(currentId,AgentHandler::getInstance().compareAgents(startId,currentId)));
+        retVector.push_back(std::pair<long,double>(currentId,AgentHandler::getInstance().compareAgents(startId,currentId)));
     }
     Graph::adjacency_iterator vertexIt, vertexEnd;
     boost::tie(vertexIt, vertexEnd) = adjacent_vertices( socialNetorkGraph.idToVdMap[currentId], socialNetorkGraph.mGraph );

@@ -9,7 +9,7 @@
 #ifndef __Social_Network__SocialNetworkAlgorithm__
 #define __Social_Network__SocialNetworkAlgorithm__
 
-#include <stdio.h>
+#include <iostream>
 #include <vector>
 #include <boost/foreach.hpp>
 #include "SocialNetworkGraph.h"

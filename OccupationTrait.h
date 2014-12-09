@@ -9,7 +9,6 @@
 #ifndef __Network_Dynamics__OccupationTrait__
 #define __Network_Dynamics__OccupationTrait__
 
-#include <stdio.h>
 #include "Trait.h"
 
 class OccupationTrait: public Trait {

@@ -9,7 +9,6 @@
 #ifndef __Network_Dynamics__SexTrait__
 #define __Network_Dynamics__SexTrait__
 
-#include <stdio.h>
 #include <vector>
 #include "Trait.h"
 

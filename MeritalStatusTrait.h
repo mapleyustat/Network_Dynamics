@@ -9,7 +9,6 @@
 #ifndef __Network_Dynamics__MeritalStatusTrait__
 #define __Network_Dynamics__MeritalStatusTrait__
 
-#include <stdio.h>
 #include "Trait.h"
 
 class MeritalStatusTrait: public Trait {

@@ -9,7 +9,6 @@
 #ifndef __Network_Dynamics__AgeTrait__
 #define __Network_Dynamics__AgeTrait__
 
-#include <stdio.h>
 #include "Trait.h"
 
 class AgeTrait: public Trait {

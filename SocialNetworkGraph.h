@@ -16,13 +16,13 @@
 #include <cmath>
 #include <map>
 
-using namespace std;
+
 
 
 class SocialNetworkGraph{
 private:
     Graph mGraph;
-    map<long,Graph::vertex_descriptor> idToVdMap;
+    std::map<long,Graph::vertex_descriptor> idToVdMap;
     long getRandomId();
     friend class SocialNetworkAlgorithm;
     const int minWeightPool=350;
