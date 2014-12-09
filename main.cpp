@@ -30,27 +30,27 @@ int main() {
     SocialNetworkGraph g;
     SocialNetworkAlgorithm algorithms(g);
 
-    g.generateSmallWorldSocialGraph(300, 15, 3, 15);
+    g.generateSmallWorldSocialGraph(1500, 15, 3, 15);
     
-    g.socialNetworkStatistics.calculateStatistics();
-    g.socialNetworkStatistics.printStatistics();
+    //g.socialNetworkStatistics.calculateStatistics();
+    //g.socialNetworkStatistics.printStatistics();
     
 
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    g.socialNetworkStatistics.calculateStatistics();
-    g.socialNetworkStatistics.printStatistics();
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 4, 2);
+//    g.socialNetworkStatistics.calculateStatistics();
+//    g.socialNetworkStatistics.printStatistics();
     
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    algorithms.makeMove(0.01, 2, 2);
-    g.socialNetworkStatistics.calculateStatistics();
-    g.socialNetworkStatistics.printStatistics();
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 4, 2);
+    algorithms.makeMove(0.1, 2, 2);
+    algorithms.makeMove(0.1, 2, 2);
+//    g.socialNetworkStatistics.calculateStatistics();
+//    g.socialNetworkStatistics.printStatistics();
     
     //SocialNetworkAlgorithm::NetworkVisitor mVisitor(4);
     //boost::depth_first_visit(g.mGraph,g.idToVdMap[g.getRandomId()] , boost::visitor(mVisitor),boost::default_color_type());

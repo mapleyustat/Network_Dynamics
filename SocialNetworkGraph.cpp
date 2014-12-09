@@ -16,6 +16,7 @@ void SocialNetworkGraph::addAgent(long id){
     Graph::vertex_descriptor v = boost::add_vertex(mGraph);
     mGraph[v].vertex_id=id;
     mGraph[v].weight_pool=rand()%(maxWeightPool-minWeightPool)+minWeightPool;
+   std::cout<<"Agent "<<id<<" weigh pool "<<mGraph[v].weight_pool<<endl;
     idToVdMap.insert(std::pair<long,Graph::vertex_descriptor>(id,v));
 }
 
@@ -24,20 +25,59 @@ void SocialNetworkGraph::addEdge(long idAgent1,long idAgent2){
     Graph::vertex_descriptor v2=idToVdMap[idAgent2];
     AgentHandler& agenthandler=AgentHandler::getInstance();
 
-    int weightPooled=agenthandler.compareAgents(idAgent1, idAgent2);
-//
-//    
-//    if(mGraph[v1].weight_pool-weightPooled<0){
-//        adjustEdges(abs(mGraph[v1].weight_pool-weightPooled));
-//    }
-//    else if(mGraph[v2].weight_pool-weightPooled<0){
-//        adjustEdges(abs(mGraph[v2].weight_pool-weightPooled));
-//    }
+    int weightPooled=agenthandler.compareAgents(idAgent1, idAgent2)*multiplyCoefficient;
+//    std::cout<<"Adding edge weight Poooled "<<weightPooled<<endl;
+    
+    if(mGraph[v1].weight_pool-weightPooled<0){
+        while(mGraph[v1].weight_pool-weightPooled<0){
+//            std::cout<<"Before iteration v1 current pool "<<mGraph[v1].weight_pool<<" Ammount needed: "<<weightPooled<<endl;
+            adjustEdges(v1,std::abs(mGraph[v1].weight_pool-weightPooled));
+//            std::cout<<"Loop iteration done current pool "<<mGraph[v1].weight_pool<<endl;
+        }
+//        std::cout<<"Adjusting done current pool "<<mGraph[v1].weight_pool<<endl;
+    }
+    else if(mGraph[v2].weight_pool-weightPooled<0){
+        while(mGraph[v2].weight_pool-weightPooled<0){
+//            std::cout<<"Before iteration v2 current pool "<<mGraph[v2].weight_pool<<" Ammount needed: "<<weightPooled<<endl;
+            adjustEdges(v2,std::abs(mGraph[v2].weight_pool-weightPooled));
+//            std::cout<<"Loop iteration done current pool "<<mGraph[v2].weight_pool<<endl;
+        }
+//        std::cout<<"Adjusting done current pool "<<mGraph[v2].weight_pool<<endl;
+    }
+    
     boost::add_edge(v1,v2,mGraph);
+    std::pair<Graph::edge_descriptor, bool> edgePair = boost::edge(v1, v2, mGraph);
+    mGraph[edgePair.first].edge_weight=weightPooled;
+    mGraph[v1].weight_pool-=weightPooled;
+    mGraph[v2].weight_pool-=weightPooled;
 }
 
 void SocialNetworkGraph::adjustEdges(Graph::vertex_descriptor v,int weightDifference){
+//    std::cout<<"Adjusting edges for "<<mGraph[v].vertex_id<<" current pool: "<<mGraph[v].weight_pool<<" difference "<<weightDifference<<endl;
     unsigned long vertexDegree=boost::degree(v,mGraph);
+    
+    int eachPoolDiff=(weightDifference/vertexDegree)+1;
+    std::vector<pair<Graph::vertex_descriptor,Graph::vertex_descriptor> > toRemove;
+    
+    Graph::adjacency_iterator vertexIt, vertexEnd;
+    boost::tie(vertexIt, vertexEnd) = adjacent_vertices( v, mGraph );
+    for (; vertexIt != vertexEnd; ++vertexIt){
+        std::pair<Graph::edge_descriptor, bool> edgePair = boost::edge(v, *vertexIt, mGraph);
+        if(mGraph[edgePair.first].edge_weight-eachPoolDiff<0){
+//            std::cout<<"Removing edge"<<endl;
+            toRemove.push_back(pair<Graph::vertex_descriptor,Graph::vertex_descriptor>(v,*vertexIt));
+        }
+        else{
+//            std::cout<<"Adding "<<eachPoolDiff<<" to "<<mGraph[v].vertex_id<< " and "<<mGraph[*vertexIt].vertex_id<<endl;
+            mGraph[edgePair.first].edge_weight-=eachPoolDiff;
+            mGraph[v].weight_pool+=eachPoolDiff;
+            mGraph[*vertexIt].weight_pool+=eachPoolDiff;
+        }
+    }
+    
+    for(std::vector<pair<Graph::vertex_descriptor,Graph::vertex_descriptor> > ::iterator it=toRemove.begin();it!=toRemove.end();it++){
+        removeEdge(mGraph[(*it).first].vertex_id, mGraph[(*it).second].vertex_id);
+    }
 }
 
 void SocialNetworkGraph::removeEdge(long id1, long id2){
