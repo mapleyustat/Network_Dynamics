@@ -16,7 +16,7 @@ void SocialNetworkGraph::addAgent(long id){
     Graph::vertex_descriptor v = boost::add_vertex(mGraph);
     mGraph[v].vertex_id=id;
     mGraph[v].weight_pool=rand()%(maxWeightPool-minWeightPool)+minWeightPool;
-   std::cout<<"Agent "<<id<<" weigh pool "<<mGraph[v].weight_pool<<endl;
+//   std::cout<<"Agent "<<id<<" weigh pool "<<mGraph[v].weight_pool<<endl;
     idToVdMap.insert(std::pair<long,Graph::vertex_descriptor>(id,v));
 }
 
