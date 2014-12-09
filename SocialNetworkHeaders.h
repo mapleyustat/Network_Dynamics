@@ -20,6 +20,7 @@ struct vertex_info {
 
 struct edge_info {
     long edge_weight;
+    size_t index;
 };
 
 typedef boost::adjacency_list<boost::setS, boost::vecS, boost::undirectedS,vertex_info,edge_info> Graph;
