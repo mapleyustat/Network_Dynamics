@@ -7,13 +7,15 @@
 //
 
 #include "TestApp.h"
+#include "NDMainFrame.h"
 
 IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-    Simple *simple = new Simple(wxT("Simple"));
-    simple->Show(true);
+    NDMainFrame* menu = new NDMainFrame(wxT("Network Dynamics Menu"));
+    menu->Show();
+    //menu->Maximize(true);
     
     return true;
 }
