@@ -1,54 +1,53 @@
+////
+////  main.cpp
+////  Network_Dynamics
+////
+////  Created by Wojtek on 14/11/14.
+////  Copyright (c) 2014 Wojtek. All rights reserved.
+////
 //
-//  main.cpp
-//  Network_Dynamics
+//#include <iostream>
+//#include <boost/graph/graphviz.hpp>
+//#include "Trait.h"
+//#include "Agent.h"
+//#include "AgentHandler.h"
+//#include "SocialNetworkGraph.h"
+//#include "SocialNetworkAlgorithm.h"
+//#include "gvc.h"
+//using namespace boost;
 //
-//  Created by Wojtek on 14/11/14.
-//  Copyright (c) 2014 Wojtek. All rights reserved.
+//#include "TestApp.h"
 //
-
-#include <iostream>
-#include <boost/graph/graphviz.hpp>
-#include "Trait.h"
-#include "Agent.h"
-#include "AgentHandler.h"
-#include "SocialNetworkGraph.h"
-#include "SocialNetworkAlgorithm.h"
-
-using namespace boost;
-
-#include "TestApp.h"
-
 //int main() {
 //    srand (1);
 //    
-//    SocialNetworkGraph g;
-//    SocialNetworkAlgorithm algorithms(g);
+//    SocialNetworkGraph gr;
+//    SocialNetworkAlgorithm algorithms(gr);
 //
-//    g.generateSmallWorldSocialGraph(1500, 15, 3, 15);
+//    gr.generateSmallWorldSocialGraph(30,2 ,1, 10);
 //    
-//    g.socialNetworkStatistics.calculateStatistics();
-//    g.socialNetworkStatistics.printStatistics();
+//    std::ofstream myfile;
+//    myfile.open ("/Users/O10/Documents/myfile.dot");
+//    gr.generateGraphiz(myfile);
+//    myfile.close();
 //    
-//
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 4, 2);
-//   g.socialNetworkStatistics.calculateStatistics();
-//    g.socialNetworkStatistics.printStatistics();
 //    
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 4, 2);
-//    algorithms.makeMove(0.1, 2, 2);
-//    algorithms.makeMove(0.1, 2, 2);
-//    g.socialNetworkStatistics.calculateStatistics();
-//    g.socialNetworkStatistics.printStatistics();
+//    GVC_t *gvc;
+//    Agraph_t *g;
+//    FILE *fp;
 //    
-//    //ofstream myfile;
-//    //myfile.open ("/Users/O10/Documents/myfile.dot");
-//    //g.generateGraphiz(myfile);
-//    //myfile.close();
+//    gvc = gvContext();
+//    fp = fopen("/Users/O10/Documents/myfile.dot", "r");
+//    g = agread(fp,0);
+//    
+//   
+//    FILE *out=fopen("/Users/O10/Documents/out.png","w");
+//    
+//    gvLayout(gvc, g, "dot");
+//    gvRender(gvc, g, "png", out);
+//    gvFreeLayout(gvc, g);
+//    agclose(g);
+//    
+//    return (gvFreeContext(gvc));
 //    return 0;
 //}
