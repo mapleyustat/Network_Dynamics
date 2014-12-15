@@ -17,11 +17,11 @@ IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {
-    Simple *frame = new Simple( "Network Dynamics" );
-    frame->Show( true );
-    //NDMainFrame* menu = new NDMainFrame(wxT("Network Dynamics Menu"));
-    //menu->Show();
-    //menu->Maximize(true);
+    //Simple *frame = new Simple( "Network Dynamics" );
+    //frame->Show( true );
+    NDMainFrame* menu = new NDMainFrame(wxT("Network Dynamics Menu"));
+    menu->Show();
+    menu->Maximize(true);
     
     return true;
 }
