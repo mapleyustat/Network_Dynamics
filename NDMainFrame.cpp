@@ -33,6 +33,7 @@ NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title,
 BEGIN_EVENT_TABLE(NDMainFrame, wxFrame)
     EVT_MENU(wxID_AUTHORS, NDMainFrame::OnAbout)
     EVT_MENU(wxID_QUIT,  NDMainFrame::OnQuit)
+    EVT_BUTTON(wxID_RUN_BUTTON,  NDMainFrame::onRun)
 END_EVENT_TABLE()
 
 void NDMainFrame::initOutterPanels() {
@@ -52,14 +53,6 @@ void NDMainFrame::initOutterPanels() {
     verticalSizer->Add(histogramPanel, 4, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
     verticalSizer->Add(statsPanel, 2, wxEXPAND | wxLEFT | wxRIGHT, 5);
     verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 5);
-    
-    std::vector<double> vecs;
-    vecs.push_back(2.5);
-    vecs.push_back(1);
-    vecs.push_back(5);
-    vecs.push_back(50);
-    vecs.push_back(100);
-    this->histogramPanel->SetData(vecs);
     
     this->SetSizer(verticalSizer);
 }
@@ -110,6 +103,26 @@ void NDMainFrame::initButtons() {
     
     this->commandPanel->SetSizer(verticalSizer);
     Centre();
+}
+
+void NDMainFrame::onRun(wxCommandEvent& event){
+    SocialNetworkGraph mGraph;
+    SocialNetworkAlgorithm mAlgorithm(mGraph);
+    mGraph.generateSmallWorldSocialGraph(900, 100, 1, 10);
+    for(int i=0;i<50;i++){
+    mGraph.socialNetworkStatistics.calculateStatistics();
+    std::map<unsigned long, int> mMap=mGraph.socialNetworkStatistics.getHistogram();
+    std::vector <double> v;
+    for( std::map<unsigned long, int>::iterator it = mMap.begin(); it != mMap.end(); ++it ) {
+        v.push_back(it->second );
+    }
+    histogramPanel->SetData(v);
+    histogramPanel->Refresh();
+    histogramPanel->Update();
+        mAlgorithm.makeMove(0.01, 2, 1);
+        mAlgorithm.makeMove(0.1, 2, 1);
+    }
+    
 }
 
 void NDMainFrame::OnAbout(wxCommandEvent& event) {

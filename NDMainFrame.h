@@ -16,6 +16,8 @@
 #include "SimpleHistogram.h"
 #include <wx/spinctrl.h>
 #include <wx/checkbox.h>
+#include "SocialNetworkGraph.h"
+#include "SocialNetworkAlgorithm.h"
 
 class NDMainFrame : public wxFrame {
     enum {
@@ -44,6 +46,7 @@ private:
     void initButtons();
     void OnAbout(wxCommandEvent& event);
     void OnQuit(wxCommandEvent& event);
+    void onRun(wxCommandEvent& event);
     
 protected:
     DECLARE_EVENT_TABLE();
