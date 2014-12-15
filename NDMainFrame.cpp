@@ -48,15 +48,15 @@ void NDMainFrame::initOutterPanels() {
     this->histogramPanel->SetBackgroundColour(wxColour(166, 166, 166));
     this->commandPanel->SetBackgroundColour(wxColour(166, 166, 166));
     
-    verticalSizer->Add(histogramPanel, 3, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
-    verticalSizer->Add(statsPanel, 3, wxEXPAND | wxLEFT | wxRIGHT, 5);
+    verticalSizer->Add(histogramPanel, 4, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
+    verticalSizer->Add(statsPanel, 2, wxEXPAND | wxLEFT | wxRIGHT, 5);
     verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 5);
     
     this->SetSizer(verticalSizer);
 }
 
 void NDMainFrame::initButtons() {
-    wxGridSizer* verticalSizer = new wxGridSizer(6, 2, 3, 3);
+    wxGridSizer* verticalSizer = new wxGridSizer(8, 2, 3, 3);
     
     // Section Header Setup
     verticalSizer->Add(new wxStaticText(this->commandPanel, -1, "Initial settings: "), 0, wxTOP | wxLEFT, 25);
@@ -85,6 +85,12 @@ void NDMainFrame::initButtons() {
     this->randomProbCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
     verticalSizer->Add(randomProbCount, 0, wxLEFT, 25);
     verticalSizer->Add(this->randomProbCtrl, 0, wxRIGHT, 25);
+    
+    // Graph Plot Checkbox Setup
+    //wxStaticText* randomProbCount = new wxStaticText(this->commandPanel, -1, "Random probability: ");
+    this->printGraphChBox = new wxCheckBox(this->commandPanel, -1, "Print Graph");
+    verticalSizer->Add(this->printGraphChBox, 0, wxLEFT, 25);
+    verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
     
     // Run Button Setup
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
