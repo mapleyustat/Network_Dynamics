@@ -15,6 +15,7 @@
 #include <wx/sizer.h>
 #include "SimpleHistogram.h"
 #include <wx/spinctrl.h>
+#include <wx/checkbox.h>
 
 class NDMainFrame : public wxFrame {
     enum {
@@ -37,6 +38,7 @@ private:
     wxSpinCtrl* connectionCountCtrl;
     wxSpinCtrl* maxRandomCtrl;
     wxSpinCtrl* randomProbCtrl;
+    wxCheckBox* printGraphChBox;
     
     void initOutterPanels();
     void initButtons();
