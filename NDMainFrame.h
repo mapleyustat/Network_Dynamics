@@ -13,15 +13,16 @@
 #include <wx/wx.h>
 #include <wx/menu.h>
 #include <wx/sizer.h>
+#include <wx/spinctrl.h>
 
 class NDMainFrame : public wxFrame {
     enum {
-        wxID_AUTHORS = 10,
-        wxID_QUIT = 11,
-        wxID_GRAPH_PANEL = 20,
-        wxID_HISTOGRAM_PANEL = 21,
-        wxID_BOTTOM_PANEL = 22,
-        wxID_RUN_BUTTON = 31
+        wxID_AUTHORS = wxID_HIGHEST + 10,
+        wxID_QUIT = wxID_HIGHEST + 11,
+        wxID_GRAPH_PANEL = wxID_HIGHEST + 20,
+        wxID_HISTOGRAM_PANEL = wxID_HIGHEST + 21,
+        wxID_COMMAND_PANEL = wxID_HIGHEST+ 22,
+        wxID_RUN_BUTTON = wxID_HIGHEST + 31
     };
     
 private:
@@ -29,8 +30,12 @@ private:
     wxMenu* fileMenu;
     wxPanel* graphPanel;
     wxPanel* histogramPanel;
-    wxPanel* bottomPanel;
+    wxPanel* commandPanel;
     wxButton* runButton;
+    wxSpinCtrl* agentCountCtrl;
+    wxSpinCtrl* connectionCountCtrl;
+    wxSpinCtrl* maxRandomCtrl;
+    wxSpinCtrl* randomProbCtrl;
     
     void initOutterPanels();
     void initButtons();

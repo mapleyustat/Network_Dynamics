@@ -22,9 +22,18 @@ public:
 
 class Simple : public wxFrame
 {
+    wxTextCtrl *agentCountCtrl;
+    wxTextCtrl *randomFactor;
 public:
     Simple(const wxString& title);
+    void onStart(wxCommandEvent& event);
+    DECLARE_EVENT_TABLE()
     
+};
+
+enum
+{
+    ON_START = wxID_HIGHEST + 1, // declares an id which will be used to call our button
 };
 
 #endif /* defined(__Network_Dynamics__TestApp__) */

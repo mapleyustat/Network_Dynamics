@@ -23,9 +23,9 @@ NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title,
     
     menuBar->Append(this->fileMenu, wxT("Menu"));
     SetMenuBar(menuBar);
-    
-    //initButtons();
+
     initOutterPanels();
+    initButtons();
     Layout();
     Centre();
 }
@@ -36,40 +36,69 @@ BEGIN_EVENT_TABLE(NDMainFrame, wxFrame)
 END_EVENT_TABLE()
 
 void NDMainFrame::initOutterPanels() {
-    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* verticalSizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* horizontalSizer = new wxBoxSizer(wxHORIZONTAL);
     
+    // Left Panel Setup
     this->graphPanel = new wxPanel(this, wxID_GRAPH_PANEL);
+    this->graphPanel->SetBackgroundColour(wxColour(120, 120, 120));
+    
+    // Right Panel Setup
     this->histogramPanel = new wxPanel(this, wxID_HISTOGRAM_PANEL);
-    this->bottomPanel = new wxPanel(this, wxID_BOTTOM_PANEL);
+    this->commandPanel = new wxPanel(this, wxID_COMMAND_PANEL);
+    this->histogramPanel->SetBackgroundColour(wxColour(166, 166, 166));
+    this->commandPanel->SetBackgroundColour(wxColour(166, 166, 166));
     
-    this->graphPanel->SetBackgroundColour(wxColour(255, 255, 0));
-    this->histogramPanel->SetBackgroundColour(wxColour(255, 0, 255));
-    this->bottomPanel->SetBackgroundColour(wxColour(0, 255, 255));
+    verticalSizer->Add(histogramPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 5);
+    verticalSizer->Add(commandPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 5);
     
-//    this->graphPanel->SetMinSize(wxSize(180, 120));
-//    this->histogramPanel->SetMinSize(wxSize(180, 120));
+    // Sizer Setup
+    horizontalSizer->Add(graphPanel, 3, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 5);
+    horizontalSizer->Add(verticalSizer, 1, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 0);
     
-    sizer->SetSizeHints(this);
-    
-    sizer->Add(graphPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 20);
-    sizer->AddSpacer(20);
-    sizer->Add(histogramPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 20);
-    sizer->Add(graphPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 20);
-    sizer->AddSpacer(20);
-    sizer->Add(bottomPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 20);
-    this->SetSizer(sizer);
-    //Layout();
+    this->SetSizer(horizontalSizer);
 }
 
 void NDMainFrame::initButtons() {
-    this->runButton = new wxButton(this->bottomPanel, wxID_RUN_BUTTON, wxT("Run"));
+    wxGridSizer* verticalSizer = new wxGridSizer(6, 2, 3, 3);
     
+    // Section Header Setup
+    verticalSizer->Add(new wxStaticText(this->commandPanel, -1, "Initial settings: "), 0, wxTOP | wxLEFT, 20);
+    verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+    
+    // Agent Count Control Setup
+    wxStaticText* nodesCount = new wxStaticText(this->commandPanel, -1, "Nodes: ");
+    this->agentCountCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 2500);
+    verticalSizer->Add(nodesCount, 0, wxLEFT, 25);
+    verticalSizer->Add(this->agentCountCtrl, 0, wxRIGHT, 25);
+    
+    // Connection Count Control Setup
+    wxStaticText* connectionsCount = new wxStaticText(this->commandPanel, -1, "Connections: ");
+    this->connectionCountCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 50);
+    verticalSizer->Add(connectionsCount, 0, wxLEFT, 25);
+    verticalSizer->Add(this->connectionCountCtrl, 0, wxRIGHT, 25);
+    
+    // Random Connection Count Control Setup
+    wxStaticText* randConnectionsCount = new wxStaticText(this->commandPanel, -1, "Random connections: ");
+    this->maxRandomCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 25);
+    verticalSizer->Add(randConnectionsCount, 0, wxLEFT, 25);
+    verticalSizer->Add(this->maxRandomCtrl, 0, wxRIGHT, 25);
+    
+    // Random Probability Control Setup
+    wxStaticText* randomProbCount = new wxStaticText(this->commandPanel, -1, "Random probability: ");
+    this->randomProbCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
+    verticalSizer->Add(randomProbCount, 0, wxLEFT, 25);
+    verticalSizer->Add(this->randomProbCtrl, 0, wxRIGHT, 25);
+    
+    // Run Button Setup
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
-    runButton->SetMinSize(wxSize(130,30));
-    buttonSizer->AddStretchSpacer();
-    buttonSizer->Add(runButton, false, wxEXPAND | wxALL, 20);
-    buttonSizer->AddStretchSpacer();
-    buttonSizer->SetSizeHints(this->bottomPanel);
+    this->runButton = new wxButton(this->commandPanel, wxID_RUN_BUTTON, wxT("Run"));
+    buttonSizer->Add(runButton, 0);
+    verticalSizer->Add(buttonSizer, 0, wxLEFT, 25);
+    verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+    
+    this->commandPanel->SetSizer(verticalSizer);
+    Centre();
 }
 
 void NDMainFrame::OnAbout(wxCommandEvent& event) {
