@@ -62,6 +62,7 @@ public:
     SocialNetworkStatistics(const Graph& graphReference);
     void calculateStatistics();
     void printStatistics();
+    const std::map<unsigned long, int>& getHistogram();
     
 
     

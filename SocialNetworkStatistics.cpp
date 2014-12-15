@@ -18,9 +18,6 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
     
 }
 void SocialNetworkStatistics::calculateStatistics() {
-//    VertexIterator iterBegin, iterEnd;
-//    tie(iterBegin, iterEnd) = vertices(this->graph);
-//    SubGraph sb(*iterBegin, *iterEnd);
     this->calculateDegreeHistogram(this->graph);
     this->calculateClusteringCoefficient(this->graph);
     //this->calculateMeanGeodesicDistance();
@@ -63,4 +60,8 @@ void SocialNetworkStatistics::printStatistics() {
     cout << "Clustering Coefficient: " << this->clusteringCoefficient << endl;
     cout << "Small World Distance: " << this->smallWorldDistance << endl;
     cout << "================================" << endl;
+}
+
+const map<unsigned long, int>& SocialNetworkStatistics::getHistogram() {
+    return this->degreeHistogram;
 }
