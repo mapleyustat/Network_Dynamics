@@ -42,8 +42,9 @@ void NDMainFrame::initOutterPanels() {
     this->statsPanel = new wxPanel(this, wxID_GRAPH_PANEL);
     this->statsPanel->SetBackgroundColour(wxColour(120, 120, 120));
     
+    
     // Right Panel Setup
-    this->histogramPanel = new wxPanel(this, wxID_HISTOGRAM_PANEL);
+    this->histogramPanel = new SimpleHistogram(this, wxID_HISTOGRAM_PANEL);
     this->commandPanel = new wxPanel(this, wxID_COMMAND_PANEL);
     this->histogramPanel->SetBackgroundColour(wxColour(166, 166, 166));
     this->commandPanel->SetBackgroundColour(wxColour(166, 166, 166));
@@ -51,6 +52,14 @@ void NDMainFrame::initOutterPanels() {
     verticalSizer->Add(histogramPanel, 3, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
     verticalSizer->Add(statsPanel, 3, wxEXPAND | wxLEFT | wxRIGHT, 5);
     verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 5);
+    
+    std::vector<double> vecs;
+    vecs.push_back(2.5);
+    vecs.push_back(1);
+    vecs.push_back(5);
+    vecs.push_back(50);
+    vecs.push_back(100);
+    this->histogramPanel->SetData(vecs);
     
     this->SetSizer(verticalSizer);
 }

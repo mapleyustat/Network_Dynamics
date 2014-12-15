@@ -13,6 +13,7 @@
 #include <wx/wx.h>
 #include <wx/menu.h>
 #include <wx/sizer.h>
+#include "SimpleHistogram.h"
 #include <wx/spinctrl.h>
 
 class NDMainFrame : public wxFrame {
@@ -29,7 +30,7 @@ private:
     wxMenuBar* menuBar;
     wxMenu* fileMenu;
     wxPanel* statsPanel;
-    wxPanel* histogramPanel;
+    SimpleHistogram* histogramPanel;
     wxPanel* commandPanel;
     wxButton* runButton;
     wxSpinCtrl* agentCountCtrl;
