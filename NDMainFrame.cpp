@@ -8,7 +8,7 @@
 
 #include "NDMainFrame.h"
 
-NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(400, 300)) {
+NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(420, 800)) {
     
     CreateStatusBar(3);
     SetStatusText(wxT("Ready"), 0);
@@ -37,11 +37,10 @@ END_EVENT_TABLE()
 
 void NDMainFrame::initOutterPanels() {
     wxBoxSizer* verticalSizer = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer* horizontalSizer = new wxBoxSizer(wxHORIZONTAL);
     
     // Left Panel Setup
-    this->graphPanel = new wxPanel(this, wxID_GRAPH_PANEL);
-    this->graphPanel->SetBackgroundColour(wxColour(120, 120, 120));
+    this->statsPanel = new wxPanel(this, wxID_GRAPH_PANEL);
+    this->statsPanel->SetBackgroundColour(wxColour(120, 120, 120));
     
     // Right Panel Setup
     this->histogramPanel = new wxPanel(this, wxID_HISTOGRAM_PANEL);
@@ -49,21 +48,18 @@ void NDMainFrame::initOutterPanels() {
     this->histogramPanel->SetBackgroundColour(wxColour(166, 166, 166));
     this->commandPanel->SetBackgroundColour(wxColour(166, 166, 166));
     
-    verticalSizer->Add(histogramPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 5);
-    verticalSizer->Add(commandPanel, true, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 5);
+    verticalSizer->Add(histogramPanel, 3, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
+    verticalSizer->Add(statsPanel, 3, wxEXPAND | wxLEFT | wxRIGHT, 5);
+    verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 5);
     
-    // Sizer Setup
-    horizontalSizer->Add(graphPanel, 3, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 5);
-    horizontalSizer->Add(verticalSizer, 1, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 0);
-    
-    this->SetSizer(horizontalSizer);
+    this->SetSizer(verticalSizer);
 }
 
 void NDMainFrame::initButtons() {
     wxGridSizer* verticalSizer = new wxGridSizer(6, 2, 3, 3);
     
     // Section Header Setup
-    verticalSizer->Add(new wxStaticText(this->commandPanel, -1, "Initial settings: "), 0, wxTOP | wxLEFT, 20);
+    verticalSizer->Add(new wxStaticText(this->commandPanel, -1, "Initial settings: "), 0, wxTOP | wxLEFT, 25);
     verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
     
     // Agent Count Control Setup

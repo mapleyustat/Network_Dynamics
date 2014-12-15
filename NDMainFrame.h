@@ -28,7 +28,7 @@ class NDMainFrame : public wxFrame {
 private:
     wxMenuBar* menuBar;
     wxMenu* fileMenu;
-    wxPanel* graphPanel;
+    wxPanel* statsPanel;
     wxPanel* histogramPanel;
     wxPanel* commandPanel;
     wxButton* runButton;
