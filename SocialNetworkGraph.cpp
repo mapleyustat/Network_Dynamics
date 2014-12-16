@@ -57,6 +57,9 @@ void SocialNetworkGraph::adjustEdges(Graph::vertex_descriptor v,int weightDiffer
 //    std::cout<<"Adjusting edges for "<<mGraph[v].vertex_id<<" current pool: "<<mGraph[v].weight_pool<<" difference "<<weightDifference<<endl;
     unsigned long vertexDegree=boost::degree(v,mGraph);
     
+    if(vertexDegree==0){
+        return;
+    }
     int eachPoolDiff=(weightDifference/vertexDegree)+1;
     std::vector<pair<Graph::vertex_descriptor,Graph::vertex_descriptor> > toRemove;
     

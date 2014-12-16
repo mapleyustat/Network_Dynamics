@@ -86,9 +86,24 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
     
     int statsRef=moves/10;
     
+    
     socialNetorkGraph.generateSmallWorldSocialGraph(nodes, connections, maxRandomConnections, randomConnectionProbability);
-    for(int i=0;i<moves;i++){
-        if(i>statsRef){
+    socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
+    auto histogramMap = socialNetorkGraph.socialNetworkStatistics.getHistogram();
+    frame->histogramPanel->SetData(histogramMap);
+    frame->histogramPanel->Refresh();
+    frame->histogramPanel->Update();
+
+    frame->avgDegreeLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.degreeAverage));
+    frame->clusteringCoefLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.clusteringCoefficient));
+    frame->swDistanceLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.smallWorldDistance));
+    
+    
+    int gaugeJump=ceil(1000/moves);
+    for(int i=1;i<=moves;i++){
+        frame->algProgressGauge->SetValue(gaugeJump*i);
+        frame->algIterationLabel->SetLabel(std::to_string(i));
+        if(i%statsRef==0){
             statsRef+=moves/10;
             // update statystyk
             
@@ -97,6 +112,10 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
             frame->histogramPanel->SetData(histogramMap);
             frame->histogramPanel->Refresh();
             frame->histogramPanel->Update();
+            
+            frame->avgDegreeLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.degreeAverage));
+            frame->clusteringCoefLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.clusteringCoefficient));
+            frame->swDistanceLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.smallWorldDistance));
             
 
         }
