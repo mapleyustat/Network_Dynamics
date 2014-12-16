@@ -183,6 +183,7 @@ void NDMainFrame::onRun(wxCommandEvent& event){
     SocialNetworkGraph* mGraph=new SocialNetworkGraph();
     SocialNetworkAlgorithm* mAlgorithm=new SocialNetworkAlgorithm(*mGraph);
     
+    SetStatusText(wxT("Running"), 0);
     std::cout<<connectionCountCtrl->GetValue();
     //do podpiecia zaraz
     mAlgorithm->run(this,agentCountCtrl->GetValue(),
@@ -194,6 +195,7 @@ void NDMainFrame::onRun(wxCommandEvent& event){
                     dlsDepthCtrl->GetValue(),
                     maxDlsParamCtrl->GetValue(),
                     printGraphChBox->GetValue());
+    SetStatusText(wxT("Finished"), 0);
     delete mAlgorithm;
     delete mGraph;
 }
