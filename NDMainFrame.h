@@ -30,7 +30,12 @@ class NDMainFrame : public wxFrame {
         wxID_AGCOUNT_CTRL = wxID_HIGHEST + 41,
         wxID_CONCOUNT_CTRL = wxID_HIGHEST + 42,
         wxID_MAXRAND_CTRL = wxID_HIGHEST + 43,
-        wxID_RANDPROB_CTRL = wxID_HIGHEST + 44
+        wxID_RANDPROB_CTRL = wxID_HIGHEST + 44,
+        wxID_PRINTGRAPH_CTRL = wxID_HIGHEST + 45,
+        wxID_DLSDEPTH_CTRL = wxID_HIGHEST + 46,
+        wxID_DLSPARAM_CTRL = wxID_HIGHEST + 47,
+        wxID_SIMLENGTH_CTRL = wxID_HIGHEST + 48,
+        wxID_PROGRESS_GAUGE = wxID_HIGHEST + 49
     };
     
 private:
@@ -40,14 +45,23 @@ private:
     SimpleHistogram* histogramPanel;
     wxPanel* commandPanel;
     wxButton* runButton;
+    wxSpinCtrl* simulationLengthCtrl;
     wxSpinCtrl* agentCountCtrl;
     wxSpinCtrl* connectionCountCtrl;
     wxSpinCtrl* maxRandomCtrl;
     wxSpinCtrl* randomProbCtrl;
+    wxSpinCtrl* dlsDepthCtrl;
+    wxSpinCtrl* dlsParamCtrl;
     wxCheckBox* printGraphChBox;
+    wxStaticText* avgDegreeLabel;
+    wxStaticText* clusteringCoefLabel;
+    wxStaticText* swDistanceLabel;
+    wxStaticText* algIterationLabel;
+    wxGauge* algProgressGauge;
     
     void initOutterPanels();
-    void initButtons();
+    void initStatsPanel();
+    void initCommandPanel();
     void OnAbout(wxCommandEvent& event);
     void OnQuit(wxCommandEvent& event);
     void onRun(wxCommandEvent& event);

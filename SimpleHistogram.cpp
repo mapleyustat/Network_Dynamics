@@ -70,3 +70,11 @@ void SimpleHistogram::SetData(vector<double> d)
         data_total += tmp;
     }
 }
+
+void SimpleHistogram::SetData(map<unsigned long, int> d) {
+    vector <double> v;
+    for(map<unsigned long, int>::iterator it = d.begin(); it != d.end(); ++it ) {
+        v.push_back(it->second );
+    }
+    this->SetData(v);
+}

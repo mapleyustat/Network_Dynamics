@@ -8,7 +8,7 @@
 
 #include "NDMainFrame.h"
 
-NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(420, 800)) {
+NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(600, 800)) {
     
     CreateStatusBar(3);
     SetStatusText(wxT("Ready"), 0);
@@ -25,7 +25,8 @@ NDMainFrame::NDMainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title,
     SetMenuBar(menuBar);
 
     initOutterPanels();
-    initButtons();
+    initStatsPanel();
+    initCommandPanel();
     Layout();
     Centre();
 }
@@ -39,69 +40,139 @@ END_EVENT_TABLE()
 void NDMainFrame::initOutterPanels() {
     wxBoxSizer* verticalSizer = new wxBoxSizer(wxVERTICAL);
     
-    // Left Panel Setup
-    this->statsPanel = new wxPanel(this, wxID_GRAPH_PANEL);
-    this->statsPanel->SetBackgroundColour(wxColour(120, 120, 120));
-    
-    
-    // Right Panel Setup
     this->histogramPanel = new SimpleHistogram(this, wxID_HISTOGRAM_PANEL);
+    this->statsPanel = new wxPanel(this, wxID_GRAPH_PANEL);
     this->commandPanel = new wxPanel(this, wxID_COMMAND_PANEL);
-    this->histogramPanel->SetBackgroundColour(wxColour(166, 166, 166));
-    this->commandPanel->SetBackgroundColour(wxColour(166, 166, 166));
+
+
+    this->histogramPanel->SetBackgroundColour(wxColour(222, 222, 222));
+    this->statsPanel->SetBackgroundColour(wxColour(222, 222, 222));
+    this->commandPanel->SetBackgroundColour(wxColour(222, 222, 222));
     
-    verticalSizer->Add(histogramPanel, 4, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
-    verticalSizer->Add(statsPanel, 2, wxEXPAND | wxLEFT | wxRIGHT, 5);
-    verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 5);
+    verticalSizer->Add(histogramPanel, 4, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 10);
+    verticalSizer->Add(statsPanel, 1, wxEXPAND | wxLEFT | wxRIGHT, 10);
+    verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 10);
     
     this->SetSizer(verticalSizer);
 }
 
-void NDMainFrame::initButtons() {
-    wxGridSizer* verticalSizer = new wxGridSizer(8, 2, 3, 3);
+void NDMainFrame::initStatsPanel() {
+    wxBoxSizer* horizontalSizer = new wxBoxSizer(wxHORIZONTAL);
     
-    // Section Header Setup
-    verticalSizer->Add(new wxStaticText(this->commandPanel, -1, "Initial settings: "), 0, wxTOP | wxLEFT, 25);
-    verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+    // Graph Statistics Static Box Setup
+    wxGridSizer* innerSizerLeft = new wxGridSizer(3, 2, 10, 0);
+    wxStaticBox* boxLeft = new wxStaticBox(this->statsPanel, -1, "Graph statistics: ");
+    wxStaticBoxSizer* boxSizerLeft = new wxStaticBoxSizer(boxLeft, wxVERTICAL);
+    
+    // Average Degree Label Setup
+    wxStaticText* degreeLabel = new wxStaticText(boxLeft, -1, "Average node degree: ");
+    this->avgDegreeLabel = new wxStaticText(boxLeft, -1, "Set me");
+    innerSizerLeft->Add(degreeLabel, 0, wxALIGN_RIGHT);
+    innerSizerLeft->Add(this->avgDegreeLabel, 0);
+
+    // Clustering Coefficient Label Setup
+    wxStaticText* clusterLabel = new wxStaticText(boxLeft, -1, "Clustering coefficient: ");
+    this->clusteringCoefLabel = new wxStaticText(boxLeft, -1, "Set me");
+    innerSizerLeft->Add(clusterLabel, 0, wxALIGN_RIGHT);
+    innerSizerLeft->Add(this->clusteringCoefLabel, 0);
+    
+    // Small World Distance Label Setup
+    wxStaticText* smallworldLabel = new wxStaticText(boxLeft, -1, "Small world distance: ");
+    this->swDistanceLabel = new wxStaticText(boxLeft, -1, "Set me");
+    innerSizerLeft->Add(smallworldLabel, 0, wxALIGN_RIGHT);
+    innerSizerLeft->Add(this->swDistanceLabel, 0);
+    
+    // Left Box Sizer Setup
+    boxSizerLeft->Add(innerSizerLeft);
+    horizontalSizer->Add(boxSizerLeft, wxEXPAND);
+    
+    // Graph Statistics Static Box Setup
+    wxGridSizer* innerSizerRight = new wxGridSizer(3, 2, 10, 0);
+    wxStaticBox* boxRight = new wxStaticBox(this->statsPanel, -1, "Simulation statistics: ");
+    wxStaticBoxSizer* boxSizerRight = new wxStaticBoxSizer(boxRight, wxVERTICAL);
+    
+    // Algorithm Iteration Counter Setup
+    wxStaticText* iterLabel = new wxStaticText(boxRight, -1, "Iteration: ");
+    this->algIterationLabel = new wxStaticText(boxRight, -1, "Set me");
+    innerSizerRight->Add(iterLabel, 0, wxALIGN_RIGHT);
+    innerSizerRight->Add(this->algIterationLabel, 0);
+    
+    // Algorithm Progress Gauge Setup
+    wxStaticText* gaugeLabel = new wxStaticText(boxRight, -1, "Progress: ");
+    this->algProgressGauge =  new wxGauge(boxRight, wxID_PROGRESS_GAUGE, 1000);
+    innerSizerRight->Add(gaugeLabel, 0, wxALIGN_RIGHT);
+    innerSizerRight->Add(this->algProgressGauge, 0);
+    
+    boxSizerRight->Add(innerSizerRight);
+    horizontalSizer->Add(boxSizerRight, wxEXPAND);
+    
+    this->statsPanel->SetSizer(horizontalSizer);
+    
+}
+
+void NDMainFrame::initCommandPanel() {
+    wxGridSizer* innerSizer = new wxGridSizer(4, 4, 10, 0);
+    wxStaticBox* box = new wxStaticBox(this->commandPanel, -1, "Initial settings: ");
+    wxStaticBoxSizer* boxSizer = new wxStaticBoxSizer(box, wxVERTICAL);
     
     // Agent Count Control Setup
-    wxStaticText* nodesCount = new wxStaticText(this->commandPanel, -1, "Nodes: ");
-    this->agentCountCtrl = new wxSpinCtrl(this->commandPanel, wxID_AGCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 2500);
-    verticalSizer->Add(nodesCount, 0, wxLEFT, 25);
-    verticalSizer->Add(this->agentCountCtrl, 0, wxRIGHT, 25);
+    wxStaticText* nodesLabel = new wxStaticText(box, -1, "Nodes: ");
+    this->agentCountCtrl = new wxSpinCtrl(box, wxID_AGCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 2500);
+    innerSizer->Add(nodesLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->agentCountCtrl, 0);
     
     // Connection Count Control Setup
-    wxStaticText* connectionsCount = new wxStaticText(this->commandPanel, -1, "Connections: ");
-    this->connectionCountCtrl = new wxSpinCtrl(this->commandPanel, wxID_CONCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 50);
-    verticalSizer->Add(connectionsCount, 0, wxLEFT, 25);
-    verticalSizer->Add(this->connectionCountCtrl, 0, wxRIGHT, 25);
+    wxStaticText* connectionsLabel = new wxStaticText(box, -1, "Connections: ");
+    this->connectionCountCtrl = new wxSpinCtrl(box, wxID_CONCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 50);
+    innerSizer->Add(connectionsLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->connectionCountCtrl);
     
     // Random Connection Count Control Setup
-    wxStaticText* randConnectionsCount = new wxStaticText(this->commandPanel, -1, "Random connections: ");
-    this->maxRandomCtrl = new wxSpinCtrl(this->commandPanel, wxID_MAXRAND_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 25);
-    verticalSizer->Add(randConnectionsCount, 0, wxLEFT, 25);
-    verticalSizer->Add(this->maxRandomCtrl, 0, wxRIGHT, 25);
+    wxStaticText* randConnectionsLabel = new wxStaticText(box, -1, "Random connections: ");
+    this->maxRandomCtrl = new wxSpinCtrl(box, wxID_MAXRAND_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 25);
+    innerSizer->Add(randConnectionsLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->maxRandomCtrl, 0);
     
     // Random Probability Control Setup
-    wxStaticText* randomProbCount = new wxStaticText(this->commandPanel, -1, "Random probability: ");
-    this->randomProbCtrl = new wxSpinCtrl(this->commandPanel, wxID_RANDPROB_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
-    verticalSizer->Add(randomProbCount, 0, wxLEFT, 25);
-    verticalSizer->Add(this->randomProbCtrl, 0, wxRIGHT, 25);
+    wxStaticText* randomProbLabel = new wxStaticText(box, -1, "Random probability: ");
+    this->randomProbCtrl = new wxSpinCtrl(box, wxID_RANDPROB_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
+    innerSizer->Add(randomProbLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->randomProbCtrl);
+    
+    // DLS Depth Limit Probability Control Setup
+    wxStaticText* depthLabel = new wxStaticText(box, -1, "Random probability: ");
+    this->dlsDepthCtrl  = new wxSpinCtrl(box, wxID_DLSDEPTH_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 2, 7, 3);
+    innerSizer->Add(depthLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->dlsDepthCtrl );
+    
+    // DFS Param Control Setup
+    wxStaticText* paramLabel = new wxStaticText(box, -1, "Random probability: ");
+    this->dlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
+    innerSizer->Add(paramLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->dlsParamCtrl);
+    
+    // Simulation Length Control Setup
+    wxStaticText* simulationLabel = new wxStaticText(box, -1, "Simulation length: ");
+    this->simulationLengthCtrl = new wxSpinCtrl(box, wxID_SIMLENGTH_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 10000, 100);
+    innerSizer->Add(simulationLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->simulationLengthCtrl);
+    innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+    innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+    innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
     
     // Graph Plot Checkbox Setup
-    //wxStaticText* randomProbCount = new wxStaticText(this->commandPanel, -1, "Random probability: ");
-    this->printGraphChBox = new wxCheckBox(this->commandPanel, -1, "Print Graph");
-    verticalSizer->Add(this->printGraphChBox, 0, wxLEFT, 25);
-    verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
-    
+    this->printGraphChBox = new wxCheckBox(box, wxID_PRINTGRAPH_CTRL, "Save Graph To File");
+    innerSizer->Add(this->printGraphChBox, wxALIGN_LEFT);
+    innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+
     // Run Button Setup
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
-    this->runButton = new wxButton(this->commandPanel, wxID_RUN_BUTTON, wxT("Run"));
+    this->runButton = new wxButton(box, wxID_RUN_BUTTON, wxT("Run"));
     buttonSizer->Add(runButton, 0);
-    verticalSizer->Add(buttonSizer, 0, wxLEFT, 25);
-    verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
+    innerSizer->Add(buttonSizer, 0, wxALIGN_LEFT);
     
-    this->commandPanel->SetSizer(verticalSizer);
+    boxSizer->Add(innerSizer, 0, wxALL | wxCENTER, 0);
+    this->commandPanel->SetSizer(boxSizer);
 }
 
 void NDMainFrame::onRun(wxCommandEvent& event){
@@ -110,18 +181,13 @@ void NDMainFrame::onRun(wxCommandEvent& event){
     mGraph.generateSmallWorldSocialGraph(900, 100, 1, 10);
     for(int i=0;i<50;i++){
     mGraph.socialNetworkStatistics.calculateStatistics();
-    std::map<unsigned long, int> mMap=mGraph.socialNetworkStatistics.getHistogram();
-    std::vector <double> v;
-    for( std::map<unsigned long, int>::iterator it = mMap.begin(); it != mMap.end(); ++it ) {
-        v.push_back(it->second );
-    }
-    histogramPanel->SetData(v);
+    auto histogramMap = mGraph.socialNetworkStatistics.getHistogram();
+    histogramPanel->SetData(histogramMap);
     histogramPanel->Refresh();
     histogramPanel->Update();
         mAlgorithm.makeMove(0.01, 2, 1);
         mAlgorithm.makeMove(0.1, 2, 1);
     }
-    
 }
 
 void NDMainFrame::OnAbout(wxCommandEvent& event) {

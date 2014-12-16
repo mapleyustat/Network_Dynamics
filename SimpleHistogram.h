@@ -20,6 +20,7 @@
 
 #include <wx/wx.h>
 #include <vector>
+#include <map>
 
 #ifndef SIMPLE_HISTOGRAM_INC
 #define SIMPLE_HISTOGRAM_INC
@@ -30,6 +31,7 @@ public:
                      const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
                      long style = wxNO_BORDER, const wxString& name = wxPanelNameStr);
     void SetData(std::vector<double> d);
+    void SetData(std::map<unsigned long, int> d);
     void OnPaint(wxPaintEvent& event);
     void OnResize(wxSizeEvent& event);
 private:
