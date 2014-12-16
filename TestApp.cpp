@@ -21,7 +21,6 @@ bool MyApp::OnInit()
     //frame->Show( true );
     NDMainFrame* menu = new NDMainFrame(wxT("Network Dynamics Menu"));
     menu->Show();
-    menu->Maximize(true);
     
     return true;
 }
