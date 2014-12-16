@@ -49,7 +49,7 @@ void SimpleHistogram::OnPaint(wxPaintEvent& event)
     BOOST_FOREACH(double d, data) {
         item_x = i * column_width;
         item_ratio = data_total ? d/data_total : 0;
-        item_height = item_ratio*7 * height;
+        item_height = item_ratio*4 * height;
         item_y = height-item_height;
         dc->DrawRectangle(item_x, item_y, column_width, item_height);
         i++;

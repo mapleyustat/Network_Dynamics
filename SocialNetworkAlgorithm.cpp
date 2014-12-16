@@ -104,14 +104,14 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
         frame->algProgressGauge->SetValue(gaugeJump*i);
         frame->algIterationLabel->SetLabel(std::to_string(i));
         if(i%statsRef==0){
-            statsRef+=moves/10;
             // update statystyk
-            
+            std::cout<<"wchodze tu";
             socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
             auto histogramMap = socialNetorkGraph.socialNetworkStatistics.getHistogram();
             frame->histogramPanel->SetData(histogramMap);
             frame->histogramPanel->Refresh();
             frame->histogramPanel->Update();
+            socialNetorkGraph.socialNetworkStatistics.printStatistics(std::cout);
             
             frame->avgDegreeLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.degreeAverage));
             frame->clusteringCoefLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.clusteringCoefficient));
@@ -123,36 +123,16 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
     }
 }
 
-void SocialNetworkAlgorithm::testSmallWorld(std::ostream& output,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections){
+void SocialNetworkAlgorithm::runTestVersion(std::ostream& output, int moves,double DFSprobability,int DFSlimit,int oneNodeConnections){
     
     int statsRef=moves/10;
     
-    socialNetorkGraph.generateSmallWorldSocialGraph(nodes, connections, maxRandomConnections, randomConnectionProbability);
     for(int i=0;i<moves;i++){
-        if(i>statsRef){
-            statsRef+=moves/10;
-            std::cout << "Small World Test:Running:" << i;
+        if (i % statsRef == 0) {
+            std::cout << "Small World Test:Running:" << i << std::endl;
+            output << "ITERATION: " << i << std::endl;
             socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
             socialNetorkGraph.socialNetworkStatistics.printStatistics(output);
-            
-        }
-        makeMove(DFSprobability, DFSlimit, oneNodeConnections);
-    }
-}
-
-void SocialNetworkAlgorithm::testRandom(std::ostream& output,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections){
-    
-    int statsRef=moves/10;
-    
-    socialNetorkGraph.generateRandomSocialGraph(nodes, connections);
-    for(int i=0;i<moves;i++){
-        if(i>statsRef){
-            statsRef+=moves/10;
-            // update statystyk
-            std::cout << "Random World Test:Running:" << i;
-            socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
-            socialNetorkGraph.socialNetworkStatistics.printStatistics(output);
-            
         }
         makeMove(DFSprobability, DFSlimit, oneNodeConnections);
     }
