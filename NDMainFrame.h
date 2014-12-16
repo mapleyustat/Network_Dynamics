@@ -54,6 +54,7 @@ private:
     wxSpinCtrl* randomProbCtrl;
     wxSpinCtrl* dlsDepthCtrl;
     wxSpinCtrl* dlsParamCtrl;
+    wxSpinCtrl* maxDlsParamCtrl;
     wxCheckBox* printGraphChBox;
     wxStaticText* avgDegreeLabel;
     wxStaticText* clusteringCoefLabel;

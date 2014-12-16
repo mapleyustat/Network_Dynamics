@@ -140,24 +140,28 @@ void NDMainFrame::initCommandPanel() {
     innerSizer->Add(this->randomProbCtrl);
     
     // DLS Depth Limit Probability Control Setup
-    wxStaticText* depthLabel = new wxStaticText(box, -1, "Random probability: ");
+    wxStaticText* depthLabel = new wxStaticText(box, -1, "DLS Depth Limit: ");
     this->dlsDepthCtrl  = new wxSpinCtrl(box, wxID_DLSDEPTH_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 2, 7, 3);
     innerSizer->Add(depthLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->dlsDepthCtrl );
     
-    // DFS Param Control Setup
-    wxStaticText* paramLabel = new wxStaticText(box, -1, "Random probability: ");
+    // DLS Param Control Setup
+    wxStaticText* paramLabel = new wxStaticText(box, -1, "DLS Probability: ");
     this->dlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
     innerSizer->Add(paramLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->dlsParamCtrl);
+    
+    // DLS Param Control Setup
+    wxStaticText* maxDlsLabel = new wxStaticText(box, -1, "DLS Max Connections: ");
+    this->maxDlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
+    innerSizer->Add(maxDlsLabel, 0, wxALIGN_RIGHT);
+    innerSizer->Add(this->maxDlsParamCtrl);
     
     // Simulation Length Control Setup
     wxStaticText* simulationLabel = new wxStaticText(box, -1, "Simulation length: ");
     this->simulationLengthCtrl = new wxSpinCtrl(box, wxID_SIMLENGTH_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 10000, 100);
     innerSizer->Add(simulationLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->simulationLengthCtrl);
-    innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
-    innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
     innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
     
     // Graph Plot Checkbox Setup
