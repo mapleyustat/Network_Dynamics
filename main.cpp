@@ -7,7 +7,7 @@
 ////
 //
 #include <iostream>
-//#include <boost/graph/graphviz.hpp>
+#include <boost/graph/graphviz.hpp>
 #include "Trait.h"
 #include "Agent.h"
 #include "AgentHandler.h"
@@ -21,12 +21,18 @@ using namespace boost;
 int main() {
 //    srand (1);
 //    
-        SocialNetworkGraph gr;
-        SocialNetworkAlgorithm algorithms(gr);
-//
-        //gr.generateSmallWorldSocialGraph(30,2 ,1, 10);
-        algorithms.run(500, 30, 2, 10, 100, 0.05, 5, 2, 0);
-//
+    SocialNetworkGraph gr;
+    SocialNetworkAlgorithm algorithms(gr);
+    std::ofstream myfile;
+    myfile.open ("/Users/Wojtek/Desktop/Tests/test.txt");
+    myfile << "SIMULATION: " << time(NULL) <<std::endl;
+    myfile << "PARAMS: " << std::endl;
+    myfile << "=======START======" << std::endl;
+    algorithms.testSmallWorld(myfile, 500, 30, 2, 10, 100, 0.05, 5, 2);
+    
+
+
+//  NIE WIEM CO TO
 //    std::ofstream myfile;
 //    myfile.open ("/Users/O10/Documents/myfile.dot");
 //    gr.generateGraphiz(myfile);
@@ -50,5 +56,5 @@ int main() {
 //    agclose(g);
 //    
 //    return (gvFreeContext(gvc));
-//    return 0;
+    return 0;
 }

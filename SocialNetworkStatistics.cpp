@@ -20,7 +20,7 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
 void SocialNetworkStatistics::calculateStatistics() {
     this->calculateDegreeHistogram(this->graph);
     this->calculateClusteringCoefficient(this->graph);
-    //this->calculateMeanGeodesicDistance();
+    this->calculateMeanGeodesicDistance(this->graph);
 }
 
 void SocialNetworkStatistics::calculateDegreeHistogram(const Graph& analyzedGraph) {
@@ -58,9 +58,9 @@ void SocialNetworkStatistics::printStatistics(std::ostream& output = std::cout) 
     output << "Small World Distance: " << this->smallWorldDistance << endl;
     output << "Histogram: " << endl;
     output << "Degree: ";
-    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) output << iter->first;
+    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) output << iter->first << " ";
     output << endl << "Count: ";
-    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) output << iter->second;
+    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) output << iter->second << " ";
 
     output << endl << "================================" << endl;
 }
