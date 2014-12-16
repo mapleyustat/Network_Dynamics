@@ -22,7 +22,11 @@ class NDMainFrame : public wxFrame {
         wxID_GRAPH_PANEL = wxID_HIGHEST + 20,
         wxID_HISTOGRAM_PANEL = wxID_HIGHEST + 21,
         wxID_COMMAND_PANEL = wxID_HIGHEST+ 22,
-        wxID_RUN_BUTTON = wxID_HIGHEST + 31
+        wxID_RUN_BUTTON = wxID_HIGHEST + 31,
+        wxID_AGCOUNT_CTRL = wxID_HIGHEST + 41,
+        wxID_CONCOUNT_CTRL = wxID_HIGHEST + 42,
+        wxID_MAXRAND_CTRL = wxID_HIGHEST + 43,
+        wxID_RANDPROB_CTRL = wxID_HIGHEST + 44
     };
     
 private:

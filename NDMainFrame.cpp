@@ -68,25 +68,25 @@ void NDMainFrame::initButtons() {
     
     // Agent Count Control Setup
     wxStaticText* nodesCount = new wxStaticText(this->commandPanel, -1, "Nodes: ");
-    this->agentCountCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 2500);
+    this->agentCountCtrl = new wxSpinCtrl(this->commandPanel, wxID_AGCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 2500);
     verticalSizer->Add(nodesCount, 0, wxLEFT, 25);
     verticalSizer->Add(this->agentCountCtrl, 0, wxRIGHT, 25);
     
     // Connection Count Control Setup
     wxStaticText* connectionsCount = new wxStaticText(this->commandPanel, -1, "Connections: ");
-    this->connectionCountCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 50);
+    this->connectionCountCtrl = new wxSpinCtrl(this->commandPanel, wxID_CONCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 50);
     verticalSizer->Add(connectionsCount, 0, wxLEFT, 25);
     verticalSizer->Add(this->connectionCountCtrl, 0, wxRIGHT, 25);
     
     // Random Connection Count Control Setup
     wxStaticText* randConnectionsCount = new wxStaticText(this->commandPanel, -1, "Random connections: ");
-    this->maxRandomCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 25);
+    this->maxRandomCtrl = new wxSpinCtrl(this->commandPanel, wxID_MAXRAND_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 25);
     verticalSizer->Add(randConnectionsCount, 0, wxLEFT, 25);
     verticalSizer->Add(this->maxRandomCtrl, 0, wxRIGHT, 25);
     
     // Random Probability Control Setup
     wxStaticText* randomProbCount = new wxStaticText(this->commandPanel, -1, "Random probability: ");
-    this->randomProbCtrl = new wxSpinCtrl(this->commandPanel, -1, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
+    this->randomProbCtrl = new wxSpinCtrl(this->commandPanel, wxID_RANDPROB_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
     verticalSizer->Add(randomProbCount, 0, wxLEFT, 25);
     verticalSizer->Add(this->randomProbCtrl, 0, wxRIGHT, 25);
     
@@ -98,7 +98,6 @@ void NDMainFrame::initButtons() {
     verticalSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
     
     this->commandPanel->SetSizer(verticalSizer);
-    Centre();
 }
 
 void NDMainFrame::OnAbout(wxCommandEvent& event) {
