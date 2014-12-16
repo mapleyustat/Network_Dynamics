@@ -54,19 +54,51 @@ private:
      */
     std::map<unsigned long, int> degreeHistogram;
     
+    /*
+     Function calculates node degree histogram
+     @param analyzedGraph graph to be analyzed
+     */
     void calculateDegreeHistogram(const Graph& analyzedGraph);
+    
+    /*
+     Function calculates clustering coefficient
+     @param analyzedGraph graph to be analyzed
+     */
     void calculateClusteringCoefficient(const Graph& analyzedGraph);
+    
+    /*
+     Function calculated mean geodesic distance (small world distance)
+     @param analyzedGraph graph to be analyzed
+     */
     void calculateMeanGeodesicDistance(const Graph& analyzedGraph);
     
 public:
+    /*
+     Class initialized
+     @param graphReference reference to analyzed graph
+     */
     SocialNetworkStatistics(const Graph& graphReference);
+    
+    /*
+     Function calculates all statistics of the referenced graph
+     */
     void calculateStatistics();
+    
+    /*
+     Function pretty prints statistics
+     @param output output stream for statistics
+     */
     void printStatistics(std::ostream& output);
+    
+    /*
+     Getter function for histogram data
+     */
     const std::map<unsigned long, int>& getHistogram();
+    
+    /*
+     Deklaration of friend class
+     */
     friend class SocialNetworkAlgorithm;
-    
-
-    
 };
 
 #endif /* defined(__Network_Dynamics__SocialNetworkStatistics__) */
