@@ -176,8 +176,8 @@ void NDMainFrame::initCommandPanel() {
 }
 
 void NDMainFrame::onRun(wxCommandEvent& event){
-    SocialNetworkGraph mGraph;
-    SocialNetworkAlgorithm mAlgorithm(mGraph);
+    SocialNetworkGraph* mGraph=new SocialNetworkGraph();
+    SocialNetworkAlgorithm* mAlgorithm=new SocialNetworkAlgorithm(*mGraph);
     
     
     //do podpiecia zaraz
@@ -187,12 +187,14 @@ void NDMainFrame::onRun(wxCommandEvent& event){
 //                   randomProbCtrl->GetValue(),
 //                   simulationLengthCtrl->GetValue(),
 //                   0.1,3,1,false); // wskaznik do frame zeby rysowal updaty , potem 4 parametry do Social Grapha , potem lizcba krokow, parametry make move i na koncu czy generowac
-    mAlgorithm.run(this,500,
-                                      8,
-                                      0,
-                                      0,
-                                      50,
+    mAlgorithm->run(this,50,
+                                      13,
+                                      1,
+                                      10,
+                                      500,
                                       0.1,4,1,false);
+    delete mAlgorithm;
+    delete mGraph;
 }
 
 void NDMainFrame::OnAbout(wxCommandEvent& event) {
