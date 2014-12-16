@@ -63,6 +63,7 @@ public:
     void calculateStatistics();
     void printStatistics(std::ostream& output);
     const std::map<unsigned long, int>& getHistogram();
+    friend class SocialNetworkAlgorithm;
     
 
     
