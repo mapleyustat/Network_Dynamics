@@ -45,9 +45,7 @@ public:
     
     void run(NDMainFrame* frame,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate);
     
-    void testRandom(std::ostream& output,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections);
-    
-    void testSmallWorld(std::ostream& output,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections);
+    void runTestVersion(std::ostream& output, int moves,double DFSprobability,int DFSlimit,int oneNodeConnections);
     
     class NetworkVisitor:public boost::default_dfs_visitor {
     private:
