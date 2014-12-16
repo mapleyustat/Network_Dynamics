@@ -15,6 +15,7 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
     SocialNetworkAlgorithm* snAlgo;
     std::ofstream output;
     
+    // Lambda function prints pretty header to output file with test details
     auto printHeader = [&](double dfsProb, int dfsLimit, int dfsCon) {
         output << "SIMULATION: " << time(NULL) << std::endl;
         output << "PARAMS: " << std::endl;
@@ -29,6 +30,8 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
         output << "Max DFS Connections: " << dfsCon << std::endl;
     };
     
+    
+    // Lambda function generates graph based on input graph type
     auto generateGraph = [&]() {
         if (initGraphType == 1) {
             snGraph->generateSmallWorldSocialGraph(nodeCnt, initConCnt, maxRndCon, rndConProb);
@@ -37,6 +40,7 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
         }
     };
     
+    // Lambda function opens stream to file. Dynamic name generation
     auto openStream = [&] (double dfsProb, int dfsLimit, int dfsCon) {
         std::stringstream fileName;
         fileName << outputDir << initGraphType << "-" << dfsProb << "-" << dfsLimit << "-" << dfsCon << ".txt";
@@ -44,7 +48,7 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
     };
     
     
-    
+    // Test Framework
     for (auto curDfsProb = dfsProbRange.first; curDfsProb <= dfsProbRange.second; curDfsProb += dfsProbStep) {
         for (auto curDfsLimit = dfsLimitRange.first; curDfsLimit <= dfsLimitRange.second; curDfsLimit += dfsLimitStep) {
             for (auto curMaxDfsCon = maxDfsConRange.first; curMaxDfsCon <= maxDfsConRange.second; curMaxDfsCon += maxDfsConStep) {
