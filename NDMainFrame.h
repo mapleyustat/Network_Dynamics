@@ -39,6 +39,7 @@ class NDMainFrame : public wxFrame {
     };
     
 private:
+    friend class SocialNetworkAlgorithm;
     wxMenuBar* menuBar;
     wxMenu* fileMenu;
     wxPanel* statsPanel;

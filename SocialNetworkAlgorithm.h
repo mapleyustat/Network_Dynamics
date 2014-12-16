@@ -13,6 +13,9 @@
 #include <vector>
 #include <boost/foreach.hpp>
 #include "SocialNetworkGraph.h"
+#include "NDMainFrame.h"
+class NDMainFrame;
+
 template <typename K, typename V>
 V GetWithDef(const  std::map <K,V> & m, const K & key, const V & defval ) {
     typename std::map<K,V>::const_iterator it = m.find( key );
@@ -39,6 +42,8 @@ public:
     void makeMove(double DFSprobability,int DFSlimit,int oneNodeConnections);
     
     void makeRandomConnections(int randomConnectionCount);
+    
+    void run(NDMainFrame* frame,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate);
     
     class NetworkVisitor:public boost::default_dfs_visitor {
     private:

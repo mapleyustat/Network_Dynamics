@@ -82,6 +82,28 @@ bool SocialNetworkAlgorithm::NetworkVisitor::operator()(){
     }
 }
 
+void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate){
+    
+    int statsRef=moves/10;
+    
+    socialNetorkGraph.generateSmallWorldSocialGraph(nodes, connections, maxRandomConnections, randomConnectionProbability);
+    for(int i=0;i<moves;i++){
+        if(i>statsRef){
+            statsRef+=moves/10;
+            // update statystyk
+            
+            socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
+            auto histogramMap = socialNetorkGraph.socialNetworkStatistics.getHistogram();
+            frame->histogramPanel->SetData(histogramMap);
+            frame->histogramPanel->Refresh();
+            frame->histogramPanel->Update();
+            
+
+        }
+        makeMove(DFSprobability, DFSlimit, oneNodeConnections);
+    }
+}
+
 void SocialNetworkAlgorithm::makeRandomConnections(int randomConnectionCount){
     long firstID,secondId;
     

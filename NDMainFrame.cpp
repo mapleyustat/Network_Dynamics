@@ -178,16 +178,9 @@ void NDMainFrame::initCommandPanel() {
 void NDMainFrame::onRun(wxCommandEvent& event){
     SocialNetworkGraph mGraph;
     SocialNetworkAlgorithm mAlgorithm(mGraph);
-    mGraph.generateSmallWorldSocialGraph(900, 100, 1, 10);
-    for(int i=0;i<50;i++){
-    mGraph.socialNetworkStatistics.calculateStatistics();
-    auto histogramMap = mGraph.socialNetworkStatistics.getHistogram();
-    histogramPanel->SetData(histogramMap);
-    histogramPanel->Refresh();
-    histogramPanel->Update();
-        mAlgorithm.makeMove(0.01, 2, 1);
-        mAlgorithm.makeMove(0.1, 2, 1);
-    }
+    
+    //do podpiecia zaraz
+    mAlgorithm.run(this,100,4,1,10,50,0.1,3,1,false); // wskaznik do frame zeby rysowal updaty , potem 4 parametry do Social Grapha , potem lizcba krokow, parametry make move i na koncu czy generowac
 }
 
 void NDMainFrame::OnAbout(wxCommandEvent& event) {
