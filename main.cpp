@@ -6,26 +6,27 @@
 ////  Copyright (c) 2014 Wojtek. All rights reserved.
 ////
 //
-//#include <iostream>
+#include <iostream>
 //#include <boost/graph/graphviz.hpp>
-//#include "Trait.h"
-//#include "Agent.h"
-//#include "AgentHandler.h"
-//#include "SocialNetworkGraph.h"
-//#include "SocialNetworkAlgorithm.h"
+#include "Trait.h"
+#include "Agent.h"
+#include "AgentHandler.h"
+#include "SocialNetworkGraph.h"
+#include "SocialNetworkAlgorithm.h"
 //#include "gvc.h"
-//using namespace boost;
-//
+using namespace boost;
+
 //#include "TestApp.h"
-//
-//int main() {
+
+int main() {
 //    srand (1);
 //    
-//    SocialNetworkGraph gr;
-//    SocialNetworkAlgorithm algorithms(gr);
+        SocialNetworkGraph gr;
+        SocialNetworkAlgorithm algorithms(gr);
 //
-//    gr.generateSmallWorldSocialGraph(30,2 ,1, 10);
-//    
+        //gr.generateSmallWorldSocialGraph(30,2 ,1, 10);
+        algorithms.run(500, 30, 2, 10, 100, 0.05, 5, 2, 0);
+//
 //    std::ofstream myfile;
 //    myfile.open ("/Users/O10/Documents/myfile.dot");
 //    gr.generateGraphiz(myfile);
@@ -50,4 +51,4 @@
 //    
 //    return (gvFreeContext(gvc));
 //    return 0;
-//}
+}

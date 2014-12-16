@@ -52,14 +52,17 @@ void SocialNetworkStatistics::calculateMeanGeodesicDistance(const Graph& analyze
     this->smallWorldDistance = all_mean_geodesics(analyzedGraph, distanceMatrix, geodesicMap);
 }
 
-void SocialNetworkStatistics::printStatistics() {
-    cout << "====== SOCIAL GRAPH STATS ======" << endl;
-    cout << "Average Degree: " << this->degreeAverage << endl;
-    cout << "Degree Histogram: " << endl;
-    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) cout << "Degree " << iter->first << ": " << iter->second << endl;
-    cout << "Clustering Coefficient: " << this->clusteringCoefficient << endl;
-    cout << "Small World Distance: " << this->smallWorldDistance << endl;
-    cout << "================================" << endl;
+void SocialNetworkStatistics::printStatistics(std::ostream& output = std::cout) {
+    output << "Average Degree: " << this->degreeAverage << endl;
+    output << "Clustering Coefficient: " << this->clusteringCoefficient << endl;
+    output << "Small World Distance: " << this->smallWorldDistance << endl;
+    output << "Histogram: " << endl;
+    output << "Degree: ";
+    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) output << iter->first;
+    output << endl << "Count: ";
+    for (auto iter = this->degreeHistogram.begin(); iter != this->degreeHistogram.end(); ++iter) output << iter->second;
+
+    output << endl << "================================" << endl;
 }
 
 const map<unsigned long, int>& SocialNetworkStatistics::getHistogram() {

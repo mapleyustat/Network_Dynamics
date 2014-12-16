@@ -82,9 +82,11 @@ bool SocialNetworkAlgorithm::NetworkVisitor::operator()(){
     }
 }
 
-void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate){
+void SocialNetworkAlgorithm::run(long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate){
     
     int statsRef=moves/10;
+    std::ofstream myfile;
+    myfile.open("/Users/Wojtek/Desktop/Tests/test.txt");
     
     socialNetorkGraph.generateSmallWorldSocialGraph(nodes, connections, maxRandomConnections, randomConnectionProbability);
     for(int i=0;i<moves;i++){
@@ -94,9 +96,10 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
             
             socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
             auto histogramMap = socialNetorkGraph.socialNetworkStatistics.getHistogram();
-            frame->histogramPanel->SetData(histogramMap);
-            frame->histogramPanel->Refresh();
-            frame->histogramPanel->Update();
+            socialNetorkGraph.socialNetworkStatistics.printStatistics(myfile);
+//            frame->histogramPanel->SetData(histogramMap);
+//            frame->histogramPanel->Refresh();
+//            frame->histogramPanel->Update();
             
 
         }

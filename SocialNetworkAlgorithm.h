@@ -43,7 +43,7 @@ public:
     
     void makeRandomConnections(int randomConnectionCount);
     
-    void run(NDMainFrame* frame,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate);
+    void run(long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate);
     
     class NetworkVisitor:public boost::default_dfs_visitor {
     private:
