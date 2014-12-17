@@ -13,7 +13,7 @@ BEGIN_EVENT_TABLE ( Simple, wxFrame )
 EVT_BUTTON(ON_START,  Simple::onStart)
 END_EVENT_TABLE()
 
-IMPLEMENT_APP(MyApp)
+//IMPLEMENT_APP(MyApp)
 
 bool MyApp::OnInit()
 {

@@ -126,9 +126,9 @@ void SocialNetworkAlgorithm::runTestVersion(std::ostream& output, int moves,doub
     
     int statsRef=moves/10;
     
-    for(int i=0;i<moves;i++){
+    for(int i=0;i<moves+1;i++){
         if (i % statsRef == 0) {
-            std::cout << "Small World Test:Running:" << i << std::endl;
+            std::cout << "Running:" << i << std::endl;
             output << "ITERATION: " << i << std::endl;
             socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
             socialNetorkGraph.socialNetworkStatistics.printStatistics(output);

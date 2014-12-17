@@ -13,11 +13,11 @@
 using namespace std;
 
 AgentHandler::AgentHandler() {
-    this->nextId = 0;
+    this->nextId = 1;
 }
 
 AgentHandler::~AgentHandler() {
-    this->nextId = 0;
+    this->nextId = 1;
     this->agentStorage.clear();
 }
 
@@ -27,7 +27,7 @@ AgentHandler& AgentHandler::getInstance() {
 }
 
 long AgentHandler::generateAgentId() {
-    return ++nextId;
+    return nextId++;
 }
 
 long AgentHandler::createAgent() {
