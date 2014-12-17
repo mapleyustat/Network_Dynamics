@@ -49,7 +49,7 @@ void NDMainFrame::initOutterPanels() {
     this->statsPanel->SetBackgroundColour(wxColour(222, 222, 222));
     this->commandPanel->SetBackgroundColour(wxColour(222, 222, 222));
     
-    verticalSizer->Add(histogramPanel, 4, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 10);
+    verticalSizer->Add(histogramPanel, 4, wxEXPAND | wxTOP | wxLEFT | wxRIGHT | wxBOTTOM, 10);
     verticalSizer->Add(statsPanel, 1, wxEXPAND | wxLEFT | wxRIGHT, 10);
     verticalSizer->Add(commandPanel, 1, wxEXPAND | wxBOTTOM | wxLEFT | wxRIGHT, 10);
     
@@ -186,18 +186,16 @@ void NDMainFrame::onRun(wxCommandEvent& event){
     
     SetStatusText(wxT("Running"), 0);
     std::cout<<connectionCountCtrl->GetValue();
-    //do podpiecia zaraz
-    //mAlgorithm->run(this, 500, 5, 1, 10, 50, 0.05, 2, 1, 0);
-    mAlgorithm->run(this,agentCountCtrl->GetValue(),
-                    connectionCountCtrl->GetValue(),
-                    maxRandomCtrl->GetValue(),
-                    randomProbCtrl->GetValue(),
-                    simulationLengthCtrl->GetValue(),
-                    ((double)dlsParamCtrl->GetValue())/100.0,
-                    dlsDepthCtrl->GetValue(),
-                    maxDlsParamCtrl->GetValue(),
-                    printGraphChBox->GetValue());
-//    mAlgorithm->run(this, 50, 5, 1, 10, 50, 0.05, 2, 1, 0);
+    mAlgorithm->run(this, 500, 5, 1, 10, 50, 0.05, 2, 1, 0);
+//    mAlgorithm->run(this,agentCountCtrl->GetValue(),
+//                    connectionCountCtrl->GetValue(),
+//                    maxRandomCtrl->GetValue(),
+//                    randomProbCtrl->GetValue(),
+//                    simulationLengthCtrl->GetValue(),
+//                    ((double)dlsParamCtrl->GetValue())/100.0,
+//                    dlsDepthCtrl->GetValue(),
+//                    maxDlsParamCtrl->GetValue(),
+//                    printGraphChBox->GetValue());
     SetStatusText(wxT("Finished"), 0);
     delete mAlgorithm;
     delete mGraph;

@@ -18,7 +18,7 @@
 #include <wx/checkbox.h>
 #include "SocialNetworkGraph.h"
 #include "SocialNetworkAlgorithm.h"
-#include <math.h>  
+#include <math.h> 
 
 class NDMainFrame : public wxFrame {
     enum {
