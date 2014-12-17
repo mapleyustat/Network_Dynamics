@@ -103,6 +103,7 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
     for(int i=1;i<=moves;i++){
         frame->algProgressGauge->SetValue(gaugeJump*i);
         frame->algIterationLabel->SetLabel(std::to_string(i));
+        frame->Refresh();
         if(i%statsRef==0){
             // update statystyk
             std::cout<<"wchodze tu";

@@ -32,7 +32,7 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
     
     
     // Lambda function generates graph based on input graph type
-    auto generateGraph = [&]() {
+    auto generateGraph = [&] {
         if (initGraphType == 1) {
             snGraph->generateSmallWorldSocialGraph(nodeCnt, initConCnt, maxRndCon, rndConProb);
         } else {
@@ -42,8 +42,13 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
     
     // Lambda function opens stream to file. Dynamic name generation
     auto openStream = [&] (double dfsProb, int dfsLimit, int dfsCon) {
-        std::stringstream fileName;
-        fileName << outputDir << initGraphType << "-" << dfsProb << "-" << dfsLimit << "-" << dfsCon << ".txt";
+        std::stringstream fileName(outputDir);
+        if (initGraphType == 1)
+            fileName << "SW";
+        else
+            fileName << "RND";
+        
+        fileName << initGraphType << "-" << dfsProb << "-" << dfsLimit << "-" << dfsCon << ".txt";
         output.open(fileName.str());
     };
     

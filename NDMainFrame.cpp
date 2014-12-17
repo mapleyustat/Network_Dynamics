@@ -66,19 +66,19 @@ void NDMainFrame::initStatsPanel() {
     
     // Average Degree Label Setup
     wxStaticText* degreeLabel = new wxStaticText(boxLeft, -1, "Average node degree: ");
-    this->avgDegreeLabel = new wxStaticText(boxLeft, -1, "Set me");
+    this->avgDegreeLabel = new wxStaticText(boxLeft, -1, "-");
     innerSizerLeft->Add(degreeLabel, 0, wxALIGN_RIGHT);
     innerSizerLeft->Add(this->avgDegreeLabel, 0);
 
     // Clustering Coefficient Label Setup
     wxStaticText* clusterLabel = new wxStaticText(boxLeft, -1, "Clustering coefficient: ");
-    this->clusteringCoefLabel = new wxStaticText(boxLeft, -1, "Set me");
+    this->clusteringCoefLabel = new wxStaticText(boxLeft, -1, "-");
     innerSizerLeft->Add(clusterLabel, 0, wxALIGN_RIGHT);
     innerSizerLeft->Add(this->clusteringCoefLabel, 0);
     
     // Small World Distance Label Setup
     wxStaticText* smallworldLabel = new wxStaticText(boxLeft, -1, "Small world distance: ");
-    this->swDistanceLabel = new wxStaticText(boxLeft, -1, "Set me");
+    this->swDistanceLabel = new wxStaticText(boxLeft, -1, "-");
     innerSizerLeft->Add(smallworldLabel, 0, wxALIGN_RIGHT);
     innerSizerLeft->Add(this->swDistanceLabel, 0);
     
@@ -93,7 +93,7 @@ void NDMainFrame::initStatsPanel() {
     
     // Algorithm Iteration Counter Setup
     wxStaticText* iterLabel = new wxStaticText(boxRight, -1, "Iteration: ");
-    this->algIterationLabel = new wxStaticText(boxRight, -1, "Set me");
+    this->algIterationLabel = new wxStaticText(boxRight, -1, "-");
     innerSizerRight->Add(iterLabel, 0, wxALIGN_RIGHT);
     innerSizerRight->Add(this->algIterationLabel, 0);
     
@@ -187,6 +187,7 @@ void NDMainFrame::onRun(wxCommandEvent& event){
     SetStatusText(wxT("Running"), 0);
     std::cout<<connectionCountCtrl->GetValue();
     //do podpiecia zaraz
+    //mAlgorithm->run(this, 500, 5, 1, 10, 50, 0.05, 2, 1, 0);
     mAlgorithm->run(this,agentCountCtrl->GetValue(),
                     connectionCountCtrl->GetValue(),
                     maxRandomCtrl->GetValue(),

@@ -19,7 +19,7 @@ bool MyApp::OnInit()
 {
     //Simple *frame = new Simple( "Network Dynamics" );
     //frame->Show( true );
-    NDMainFrame* menu = new NDMainFrame(wxT("Network Dynamics Menu"));
+    NDMainFrame* menu = new NDMainFrame(wxT("Social Network Dynamics Analysis"));
     menu->Show();
     
     return true;
