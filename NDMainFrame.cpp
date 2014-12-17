@@ -87,7 +87,7 @@ void NDMainFrame::initStatsPanel() {
     horizontalSizer->Add(boxSizerLeft, wxEXPAND);
     
     // Graph Statistics Static Box Setup
-    wxGridSizer* innerSizerRight = new wxGridSizer(3, 2, 10, 0);
+    wxGridSizer* innerSizerRight = new wxGridSizer(1, 2, 10, 10);
     wxStaticBox* boxRight = new wxStaticBox(this->statsPanel, -1, "Simulation statistics: ");
     wxStaticBoxSizer* boxSizerRight = new wxStaticBoxSizer(boxRight, wxVERTICAL);
     
@@ -98,12 +98,13 @@ void NDMainFrame::initStatsPanel() {
     innerSizerRight->Add(this->algIterationLabel, 0);
     
     // Algorithm Progress Gauge Setup
-    wxStaticText* gaugeLabel = new wxStaticText(boxRight, -1, "Progress: ");
+    //wxStaticText* gaugeLabel = new wxStaticText(boxRight, -1, "Progress: ");
     this->algProgressGauge =  new wxGauge(boxRight, wxID_PROGRESS_GAUGE, 1000);
-    innerSizerRight->Add(gaugeLabel, 0, wxALIGN_RIGHT);
+    //innerSizerRight->Add(gaugeLabel, 0, wxALIGN_RIGHT);
     innerSizerRight->Add(this->algProgressGauge, 0);
     
     boxSizerRight->Add(innerSizerRight);
+    boxSizerRight->Add(this->algProgressGauge, 0, wxEXPAND | wxCENTER | wxLEFT | wxRIGHT | wxBOTTOM, 10);
     horizontalSizer->Add(boxSizerRight, wxEXPAND);
     
     this->statsPanel->SetSizer(horizontalSizer);
