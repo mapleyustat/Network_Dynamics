@@ -18,38 +18,38 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
     
 }
 void SocialNetworkStatistics::calculateStatistics() {
-    this->calculateDegreeHistogram(this->graph);
-    this->calculateClusteringCoefficient(this->graph);
-    this->calculateMeanGeodesicDistance(this->graph);
+    this->calculateDegreeHistogram();
+    this->calculateClusteringCoefficient();
+    this->calculateMeanGeodesicDistance();
 }
 
-void SocialNetworkStatistics::calculateDegreeHistogram(const Graph& analyzedGraph) {
+void SocialNetworkStatistics::calculateDegreeHistogram() {
     unsigned long currentDegree;
     this->degreeHistogram.clear();
     
     VertexIterator iterBegin, iterEnd;
-    for (tie(iterBegin, iterEnd) = vertices(analyzedGraph); iterBegin != iterEnd; ++iterBegin) {
-        currentDegree = degree(*iterBegin, analyzedGraph);
+    for (tie(iterBegin, iterEnd) = vertices(this->graph); iterBegin != iterEnd; ++iterBegin) {
+        currentDegree = degree(*iterBegin, this->graph);
         ++(this->degreeHistogram[currentDegree]);
     }
-        this->degreeAverage = (double) num_edges(analyzedGraph) / num_vertices(analyzedGraph);
+        this->degreeAverage = (double) num_edges(this->graph) / num_vertices(this->graph);
 }
 
-void SocialNetworkStatistics::calculateClusteringCoefficient(const Graph& analyzedGraph) {
-    AlgorithmContainer coefs(num_vertices(analyzedGraph));
-    AlgorithmMap clusterMap(coefs, analyzedGraph);
-    this->clusteringCoefficient = all_clustering_coefficients(analyzedGraph, clusterMap);
+void SocialNetworkStatistics::calculateClusteringCoefficient() {
+    AlgorithmContainer coefs(num_vertices(this->graph));
+    AlgorithmMap clusterMap(coefs, this->graph);
+    this->clusteringCoefficient = all_clustering_coefficients(this->graph, clusterMap);
 }
 
-void SocialNetworkStatistics::calculateMeanGeodesicDistance(const Graph& analyzedGraph) {
-    DistanceMatrix distances(num_vertices(analyzedGraph));
-    DistanceMatrixMap distanceMatrix(distances, analyzedGraph);
+void SocialNetworkStatistics::calculateMeanGeodesicDistance() {
+    DistanceMatrix distances(num_vertices(this->graph));
+    DistanceMatrixMap distanceMatrix(distances, this->graph);
     WeightMap weightMap(1);
-    floyd_warshall_all_pairs_shortest_paths(analyzedGraph, distanceMatrix, weight_map(weightMap));
+    johnson_all_pairs_shortest_paths(this->graph, distanceMatrix, weight_map(weightMap));
     
-    AlgorithmContainer geodesics(num_vertices(analyzedGraph));
-    AlgorithmMap geodesicMap(geodesics, analyzedGraph);
-    this->smallWorldDistance = all_mean_geodesics(analyzedGraph, distanceMatrix, geodesicMap);
+    AlgorithmContainer geodesics(num_vertices(this->graph));
+    AlgorithmMap geodesicMap(geodesics, this->graph);
+    this->smallWorldDistance = all_mean_geodesics(this->graph, distanceMatrix, geodesicMap);
 }
 
 void SocialNetworkStatistics::printStatistics(std::ostream& output = std::cout) {

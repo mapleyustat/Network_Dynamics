@@ -15,7 +15,7 @@
 #include <boost/graph/subgraph.hpp>
 #include <boost/graph/clustering_coefficient.hpp>
 #include <boost/graph/geodesic_distance.hpp>
-#include <boost/graph/floyd_warshall_shortest.hpp>
+#include <boost/graph/johnson_all_pairs_shortest.hpp>
 #include <boost/graph/exterior_property.hpp>
 #include "SocialNetworkHeaders.h"
 
@@ -58,19 +58,19 @@ private:
      Function calculates node degree histogram
      @param analyzedGraph graph to be analyzed
      */
-    void calculateDegreeHistogram(const Graph& analyzedGraph);
+    void calculateDegreeHistogram();
     
     /*
      Function calculates clustering coefficient
      @param analyzedGraph graph to be analyzed
      */
-    void calculateClusteringCoefficient(const Graph& analyzedGraph);
+    void calculateClusteringCoefficient();
     
     /*
      Function calculated mean geodesic distance (small world distance)
      @param analyzedGraph graph to be analyzed
      */
-    void calculateMeanGeodesicDistance(const Graph& analyzedGraph);
+    void calculateMeanGeodesicDistance();
     
 public:
     /*
