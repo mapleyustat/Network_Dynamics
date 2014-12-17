@@ -16,7 +16,7 @@
 
 int main1 (){
     SocialNetworkTest testCase;
-    testCase.runTest(SocialNetworkTest::InitGraph::SmallWorldGraph, 50, 8, 1, 10, 10, std::make_pair(0.05, 0.06), 0.01, std::make_pair(2, 3), 1, std::make_pair(1, 2), 1, "/Users/Wojtek/Desktop/Tests/");
+//    testCase.runTest(SocialNetworkTest::InitGraph::SmallWorldGraph, 50, 8, 1, 10, 10, std::make_pair(0.05, 0.06), 0.01, std::make_pair(2, 3), 1, std::make_pair(1, 2), 1, "/Users/Wojtek/Desktop/Tests/");
     
 //////    NIE WIEM CO TO
 //////    std::ofstream myfile;
