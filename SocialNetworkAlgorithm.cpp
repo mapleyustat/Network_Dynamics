@@ -106,7 +106,6 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
         frame->Refresh();
         if(i%statsRef==0){
             // update statystyk
-            std::cout<<"wchodze tu";
             socialNetorkGraph.socialNetworkStatistics.calculateStatistics();
             auto histogramMap = socialNetorkGraph.socialNetworkStatistics.getHistogram();
             frame->histogramPanel->SetData(histogramMap);

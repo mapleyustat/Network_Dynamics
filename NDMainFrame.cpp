@@ -185,7 +185,6 @@ void NDMainFrame::onRun(wxCommandEvent& event){
     SocialNetworkAlgorithm* mAlgorithm=new SocialNetworkAlgorithm(*mGraph);
     
     SetStatusText(wxT("Running"), 0);
-    std::cout<<connectionCountCtrl->GetValue();
     mAlgorithm->run(this,agentCountCtrl->GetValue(),
                     connectionCountCtrl->GetValue(),
                     maxRandomCtrl->GetValue(),
