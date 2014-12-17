@@ -177,6 +177,6 @@ long SocialNetworkGraph::getRandomId(){
     long mapSize=idToVdMap.size();
     std::map<long,Graph::vertex_descriptor>::iterator it=idToVdMap.begin();
     std::advance(it,rand()%mapSize);
-    return it->second;
+    return it->first;
 }
 
