@@ -193,10 +193,11 @@ void NDMainFrame::onRun(wxCommandEvent& event){
                     maxRandomCtrl->GetValue(),
                     randomProbCtrl->GetValue(),
                     simulationLengthCtrl->GetValue(),
-                    dlsParamCtrl->GetValue()/100,
+                    ((double)dlsParamCtrl->GetValue())/100.0,
                     dlsDepthCtrl->GetValue(),
                     maxDlsParamCtrl->GetValue(),
                     printGraphChBox->GetValue());
+//    mAlgorithm->run(this, 50, 5, 1, 10, 50, 0.05, 2, 1, 0);
     SetStatusText(wxT("Finished"), 0);
     delete mAlgorithm;
     delete mGraph;

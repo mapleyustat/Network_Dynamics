@@ -112,7 +112,6 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
             frame->histogramPanel->SetData(histogramMap);
             frame->histogramPanel->Refresh();
             frame->histogramPanel->Update();
-            socialNetorkGraph.socialNetworkStatistics.printStatistics(std::cout);
             
             frame->avgDegreeLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.degreeAverage));
             frame->clusteringCoefLabel->SetLabel(std::to_string(socialNetorkGraph.socialNetworkStatistics.clusteringCoefficient));
