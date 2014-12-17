@@ -118,49 +118,49 @@ void NDMainFrame::initCommandPanel() {
     
     // Agent Count Control Setup
     wxStaticText* nodesLabel = new wxStaticText(box, -1, "Nodes: ");
-    this->agentCountCtrl = new wxSpinCtrl(box, wxID_AGCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 300);
+    this->agentCountCtrl = new wxSpinCtrl(box, wxID_AGCOUNT_CTRL, "300", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 150, 10000, 300);
     innerSizer->Add(nodesLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->agentCountCtrl, 0);
     
     // Connection Count Control Setup
     wxStaticText* connectionsLabel = new wxStaticText(box, -1, "Connections: ");
-    this->connectionCountCtrl = new wxSpinCtrl(box, wxID_CONCOUNT_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 4);
+    this->connectionCountCtrl = new wxSpinCtrl(box, wxID_CONCOUNT_CTRL, "4", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 150, 4);
     innerSizer->Add(connectionsLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->connectionCountCtrl);
     
     // Random Connection Count Control Setup
     wxStaticText* randConnectionsLabel = new wxStaticText(box, -1, "Random connections: ");
-    this->maxRandomCtrl = new wxSpinCtrl(box, wxID_MAXRAND_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 1);
+    this->maxRandomCtrl = new wxSpinCtrl(box, wxID_MAXRAND_CTRL, "1", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 50, 1);
     innerSizer->Add(randConnectionsLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->maxRandomCtrl, 0);
     
     // Random Probability Control Setup
     wxStaticText* randomProbLabel = new wxStaticText(box, -1, "Random probability: ");
-    this->randomProbCtrl = new wxSpinCtrl(box, wxID_RANDPROB_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
+    this->randomProbCtrl = new wxSpinCtrl(box, wxID_RANDPROB_CTRL, "10", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 10);
     innerSizer->Add(randomProbLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->randomProbCtrl);
     
     // DLS Depth Limit Probability Control Setup
     wxStaticText* depthLabel = new wxStaticText(box, -1, "DLS Depth Limit: ");
-    this->dlsDepthCtrl  = new wxSpinCtrl(box, wxID_DLSDEPTH_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 2, 7, 3);
+    this->dlsDepthCtrl  = new wxSpinCtrl(box, wxID_DLSDEPTH_CTRL, "3", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 2, 7, 3);
     innerSizer->Add(depthLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->dlsDepthCtrl );
     
     // DLS Param Control Setup
     wxStaticText* paramLabel = new wxStaticText(box, -1, "DLS Probability: ");
-    this->dlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 5);
+    this->dlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "5", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 5);
     innerSizer->Add(paramLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->dlsParamCtrl);
     
     // DLS Param Control Setup
     wxStaticText* maxDlsLabel = new wxStaticText(box, -1, "DLS Max Connections: ");
-    this->maxDlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 1);
+    this->maxDlsParamCtrl = new wxSpinCtrl(box, wxID_DLSPARAM_CTRL, "1", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 100, 1);
     innerSizer->Add(maxDlsLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->maxDlsParamCtrl);
     
     // Simulation Length Control Setup
     wxStaticText* simulationLabel = new wxStaticText(box, -1, "Simulation length: ");
-    this->simulationLengthCtrl = new wxSpinCtrl(box, wxID_SIMLENGTH_CTRL, "Set field", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 10000, 100);
+    this->simulationLengthCtrl = new wxSpinCtrl(box, wxID_SIMLENGTH_CTRL, "100", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 10000, 100);
     innerSizer->Add(simulationLabel, 0, wxALIGN_RIGHT);
     innerSizer->Add(this->simulationLengthCtrl);
     innerSizer->Add(new wxStaticText(this, -1, wxT("")), 0);
