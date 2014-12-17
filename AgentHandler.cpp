@@ -12,9 +12,12 @@
 
 using namespace std;
 
-AgentHandler::AgentHandler() {}
+AgentHandler::AgentHandler() {
+    this->nextId = 0;
+}
 
 AgentHandler::~AgentHandler() {
+    this->nextId = 0;
     this->agentStorage.clear();
 }
 
@@ -24,7 +27,6 @@ AgentHandler& AgentHandler::getInstance() {
 }
 
 long AgentHandler::generateAgentId() {
-    static long nextId = 0;
     return ++nextId;
 }
 
@@ -92,5 +94,10 @@ double AgentHandler::compareAgents(long firstAgentId, long secondAgentId) {
 
 void AgentHandler::printAgent(long agentId) {
     cout << *(this->agentStorage[agentId]);
+}
+
+void AgentHandler::clearAll() {
+    this->nextId = 0;
+    this->agentStorage.clear();
 }
 

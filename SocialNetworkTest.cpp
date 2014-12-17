@@ -42,7 +42,8 @@ void SocialNetworkTest::runTest(InitGraph initGraphType, int nodeCnt, int initCo
     
     // Lambda function opens stream to file. Dynamic name generation
     auto openStream = [&] (double dfsProb, int dfsLimit, int dfsCon) {
-        std::stringstream fileName(outputDir);
+        std::stringstream fileName;
+        fileName << outputDir;
         if (initGraphType == 1)
             fileName << "SW";
         else

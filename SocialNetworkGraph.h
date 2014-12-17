@@ -39,6 +39,10 @@ public:
      */
     SocialNetworkGraph();
     
+    ~SocialNetworkGraph() {
+        AgentHandler::getInstance().clearAll();
+    }
+    
     SocialNetworkStatistics& getStatistics(){
         return socialNetworkStatistics;
     }

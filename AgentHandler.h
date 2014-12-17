@@ -20,6 +20,7 @@
 class AgentHandler {
 private:
     std::unordered_map<long, std::unique_ptr<Agent>> agentStorage;
+    long nextId;
     
     /**
      AgentHandler class default constructor.
@@ -92,6 +93,11 @@ public:
      @param agentId ID of printed agent
      */
     void printAgent(long agentId);
+    
+    /**
+     Additional function for restarting AgentHandler! USE WITH CARE!
+     */
+    void clearAll();
 
 };
 
