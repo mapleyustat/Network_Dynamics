@@ -7,6 +7,7 @@
 //
 
 #include "SocialNetworkStatistics.h"
+#include <thread>
 
 using namespace boost;
 using namespace std;
@@ -18,9 +19,15 @@ SocialNetworkStatistics::SocialNetworkStatistics(const Graph& graphReference) : 
     
 }
 void SocialNetworkStatistics::calculateStatistics() {
-    this->calculateDegreeHistogram();
-    this->calculateClusteringCoefficient();
-    this->calculateMeanGeodesicDistance();
+    thread t1(&SocialNetworkStatistics::calculateDegreeHistogram, this);
+    thread t2(&SocialNetworkStatistics::calculateClusteringCoefficient, this);
+    thread t3(&SocialNetworkStatistics::calculateMeanGeodesicDistance, this);
+    //this->calculateDegreeHistogram();
+    //this->calculateClusteringCoefficient();
+    //this->calculateMeanGeodesicDistance();
+    t1.join();
+    t2.join();
+    t3.join();
 }
 
 void SocialNetworkStatistics::calculateDegreeHistogram() {
