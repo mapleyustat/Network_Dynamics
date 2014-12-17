@@ -186,16 +186,15 @@ void NDMainFrame::onRun(wxCommandEvent& event){
     
     SetStatusText(wxT("Running"), 0);
     std::cout<<connectionCountCtrl->GetValue();
-    mAlgorithm->run(this, 500, 5, 1, 10, 50, 0.05, 2, 1, 0);
-//    mAlgorithm->run(this,agentCountCtrl->GetValue(),
-//                    connectionCountCtrl->GetValue(),
-//                    maxRandomCtrl->GetValue(),
-//                    randomProbCtrl->GetValue(),
-//                    simulationLengthCtrl->GetValue(),
-//                    ((double)dlsParamCtrl->GetValue())/100.0,
-//                    dlsDepthCtrl->GetValue(),
-//                    maxDlsParamCtrl->GetValue(),
-//                    printGraphChBox->GetValue());
+    mAlgorithm->run(this,agentCountCtrl->GetValue(),
+                    connectionCountCtrl->GetValue(),
+                    maxRandomCtrl->GetValue(),
+                    randomProbCtrl->GetValue(),
+                    simulationLengthCtrl->GetValue(),
+                    ((double)dlsParamCtrl->GetValue())/100.0,
+                    dlsDepthCtrl->GetValue(),
+                    maxDlsParamCtrl->GetValue(),
+                    printGraphChBox->GetValue());
     SetStatusText(wxT("Finished"), 0);
     delete mAlgorithm;
     delete mGraph;
