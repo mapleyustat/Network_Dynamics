@@ -85,6 +85,9 @@ bool SocialNetworkAlgorithm::NetworkVisitor::operator()(){
 void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,int maxRandomConnections,int randomConnectionProbability,int moves,double DFSprobability,int DFSlimit,int oneNodeConnections,bool shouldGenerate){
     
     int statsRef=moves/10;
+    if(statsRef==0){
+        statsRef++;
+    }
     
     
     socialNetorkGraph.generateSmallWorldSocialGraph(nodes, connections, maxRandomConnections, randomConnectionProbability);
@@ -120,6 +123,33 @@ void SocialNetworkAlgorithm::run(NDMainFrame* frame,long nodes, int connections,
         }
         makeMove(DFSprobability, DFSlimit, oneNodeConnections);
     }
+    if(shouldGenerate)
+    {
+        std::ofstream myfile;
+        myfile.open ("/Users/O10/Documents/myfile.dot");
+        socialNetorkGraph.generateGraphiz(myfile);
+        myfile.close();
+        
+        
+        GVC_t *gvc;
+        Agraph_t *g;
+        FILE *fp;
+        
+        gvc = gvContext();
+        fp = fopen("/Users/O10/Documents/myfile.dot", "r");
+        g = agread(fp,0);
+        
+        
+        FILE *out=fopen("/Users/O10/Documents/out.png","w");
+        
+        gvLayout(gvc, g, "dot");
+        gvRender(gvc, g, "png", out);
+        gvFreeLayout(gvc, g);
+        agclose(g);
+        
+        gvFreeContext(gvc);
+    }
+    
 }
 
 void SocialNetworkAlgorithm::runTestVersion(std::ostream& output, int moves,double DFSprobability,int DFSlimit,int oneNodeConnections){

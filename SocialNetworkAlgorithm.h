@@ -14,6 +14,7 @@
 #include <boost/foreach.hpp>
 #include "SocialNetworkGraph.h"
 #include "NDMainFrame.h"
+#include "gvc.h"
 class NDMainFrame;
 
 template <typename K, typename V>
